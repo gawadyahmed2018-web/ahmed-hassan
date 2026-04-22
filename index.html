@@ -360,15 +360,92 @@
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
   /* RESPONSIVE */
+  /* ── TABLET ── */
   @media (max-width: 900px) {
-    nav { padding: 16px 24px; }
+    nav { padding: 16px 20px; }
     .nav-links { display: none; }
-    section { padding: 80px 24px; }
-    .hero { padding: 100px 24px 60px; }
-    .hero-inner { grid-template-columns: 1fr; gap: 48px; }
-    .exp-grid, .cases-grid, .services-grid { grid-template-columns: 1fr; }
-    .contact-inner { grid-template-columns: 1fr; gap: 48px; }
+    section { padding: 60px 20px; }
+    .hero { padding: 90px 20px 50px; }
+    .hero-inner { grid-template-columns: 1fr; gap: 36px; }
+    .exp-grid { grid-template-columns: 1fr 1fr; }
+    .cases-grid { grid-template-columns: 1fr 1fr; }
+    .services-grid { grid-template-columns: 1fr 1fr; }
+    .contact-inner { grid-template-columns: 1fr; gap: 40px; }
     footer { flex-direction: column; gap: 12px; text-align: center; }
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 600px) {
+    /* Nav */
+    nav { padding: 14px 16px; }
+    .nav-logo { font-size: 15px; }
+    .nav-cta { padding: 8px 16px; font-size: 13px; }
+
+    /* Sections */
+    section { padding: 50px 16px; }
+    .hero { padding: 80px 16px 40px; }
+    .section-title { font-size: 28px; letter-spacing: -1px; }
+    .section-sub { font-size: 15px; }
+
+    /* Hero */
+    .hero-inner { grid-template-columns: 1fr; gap: 32px; }
+    .hero h1 { font-size: 42px; letter-spacing: -2px; }
+    .hero-desc { font-size: 15px; }
+    .hero-actions { flex-direction: column; gap: 12px; }
+    .hero-actions a { width: 100%; text-align: center; justify-content: center; }
+
+    /* Hero photo + name row */
+    .hero-photo-row { flex-direction: column; align-items: flex-start !important; gap: 16px !important; }
+    .hero-photo-row img { width: 80px !important; height: 80px !important; }
+
+    /* Stats card */
+    .stats-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+    .stat-num { font-size: 28px; }
+    .stats-card { padding: 24px; }
+
+    /* Experience */
+    .exp-grid { grid-template-columns: 1fr; }
+    .exp-card { padding: 24px 20px; }
+    .exp-role { font-size: 18px !important; }
+    .exp-company { font-size: 14px !important; }
+
+    /* Cases */
+    .cases-grid { grid-template-columns: 1fr; }
+    .case-card { padding: 24px 20px; }
+    .case-metrics { flex-wrap: wrap; gap: 12px; }
+
+    /* Services */
+    .services-grid { grid-template-columns: 1fr; }
+    .service-item { padding: 24px 20px; }
+
+    /* Markets & Industries grid */
+    .markets-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+
+    /* Flags row */
+    .flags-wrap { gap: 10px !important; }
+    .flags-wrap > div { min-width: 80px !important; padding: 14px 10px !important; }
+    .flags-wrap img { width: 40px !important; }
+    .flags-wrap strong { font-size: 11px !important; }
+
+    /* Industries cards */
+    .industry-card { padding: 14px 16px !important; }
+
+    /* Freelance grid */
+    .freelance-grid { grid-template-columns: 1fr !important; }
+
+    /* Contact */
+    .contact-inner { grid-template-columns: 1fr; gap: 32px; }
+    .cta-big { font-size: 32px; letter-spacing: -2px; }
+    .contact-link { padding: 16px 18px; }
+
+    /* Tools */
+    .tools-wrap { gap: 8px; }
+    .tool-chip { font-size: 12px; padding: 6px 12px; }
+
+    /* Frame wrapper for markets section */
+    .markets-frame { padding: 28px 20px !important; border-radius: 20px !important; }
+
+    footer { padding: 24px 16px; font-size: 12px; }
   }
 </style>
 </head>
@@ -393,7 +470,7 @@
       <div class="hero-tag">Available for New Projects</div>
 
       <!-- Photo + Name + Title -->
-      <div style="display:flex; align-items:center; gap:24px; margin-bottom:32px;">
+      <div class="hero-photo-row" style="display:flex; align-items:center; gap:24px; margin-bottom:32px;">
         <div style="position:relative; flex-shrink:0;">
           <img src="photo.jpg" alt="Ahmed Khamis"
             style="width:100px; height:100px; border-radius:50%; object-fit:cover; object-position:top;
@@ -460,14 +537,14 @@
 <!-- MARKETS -->
 <section style="padding: 80px 48px; background: linear-gradient(135deg, #fff8f5 0%, #f2f2f0 60%, #f0f4ff 100%); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
   <div class="section-inner">
-    <div style="background:#fff;border:1.5px solid #e8e0ff;border-radius:28px;padding:48px;box-shadow:0 8px 40px rgba(0,0,0,0.06);">
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start;">
+    <div class="markets-frame" style="background:#fff;border:1.5px solid #e8e0ff;border-radius:28px;padding:48px;box-shadow:0 8px 40px rgba(0,0,0,0.06);">
+    <div class="markets-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start;">
 
       <!-- Markets -->
       <div class="reveal">
         <div class="section-label">Geographic Reach</div>
         <h2 class="section-title" style="font-size:clamp(28px,3vw,42px);margin-bottom:24px;">Markets I've<br>Worked In</h2>
-        <div style="display:flex;flex-wrap:wrap;gap:14px;">
+        <div class="flags-wrap" style="display:flex;flex-wrap:wrap;gap:14px;">
           <div style="display:flex;flex-direction:column;align-items:center;gap:8px;padding:18px 22px;background:#fff;border:1.5px solid #e0e0de;border-radius:16px;min-width:100px;flex:1;box-shadow:0 2px 12px rgba(0,0,0,0.06);">
             <img src="https://flagcdn.com/w80/eg.png" width="52" style="border-radius:6px;display:block;">
             <strong style="font-size:13px;font-weight:600;">Egypt</strong>
@@ -899,7 +976,7 @@
       <h2 class="section-title">Independent Work</h2>
       <p class="section-sub">Selected projects and consulting engagements across the region.</p>
     </div>
-    <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:20px;">
+    <div class="freelance-grid" style="display:grid; grid-template-columns: repeat(3, 1fr); gap:20px;">
 
       <!-- Madfu -->
       <div class="case-card reveal">
