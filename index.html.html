@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ahmed Hassan — Digital Marketing Manager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --surface: #111111;
+    --surface2: #181818;
+    --accent: #e8ff47;
+    --accent2: #ff6b35;
+    --text: #f0f0f0;
+    --muted: #888;
+    --border: rgba(255,255,255,0.07);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 48px;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 18px;
+    letter-spacing: -0.5px;
+  }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none; font-size: 14px;
+    font-weight: 500; letter-spacing: 0.3px;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+  .nav-cta {
+    background: var(--accent); color: #000;
+    padding: 10px 22px; border-radius: 100px;
+    font-weight: 600; font-size: 14px; text-decoration: none;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .nav-cta:hover { opacity: 0.85; transform: translateY(-1px); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 120px 48px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -200px; right: -100px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(232,255,71,0.08) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; bottom: -100px; left: -100px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(255,107,53,0.06) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    max-width: 1200px; margin: 0 auto; width: 100%;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(232,255,71,0.1); border: 1px solid rgba(232,255,71,0.2);
+    padding: 6px 14px; border-radius: 100px;
+    font-size: 12px; font-weight: 500; color: var(--accent);
+    letter-spacing: 1px; text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+  .hero-tag::before {
+    content: ''; width: 6px; height: 6px;
+    background: var(--accent); border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(48px, 6vw, 82px);
+    font-weight: 800; line-height: 1.0;
+    letter-spacing: -3px; margin-bottom: 24px;
+  }
+  .hero h1 em {
+    font-style: normal; color: var(--accent);
+    display: block;
+  }
+  .hero-desc {
+    color: var(--muted); font-size: 17px; line-height: 1.7;
+    max-width: 480px; margin-bottom: 40px;
+    font-weight: 300;
+  }
+  .hero-actions { display: flex; gap: 16px; align-items: center; }
+  .btn-primary {
+    background: var(--accent); color: #000;
+    padding: 14px 30px; border-radius: 100px;
+    font-weight: 600; font-size: 15px; text-decoration: none;
+    transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(232,255,71,0.25); }
+  .btn-ghost {
+    color: var(--text); text-decoration: none;
+    font-size: 15px; font-weight: 500;
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 14px 24px; border: 1px solid var(--border); border-radius: 100px;
+    transition: all 0.2s;
+  }
+  .btn-ghost:hover { border-color: rgba(255,255,255,0.2); background: var(--surface); }
+
+  /* HERO STATS CARD */
+  .hero-right { position: relative; }
+  .stats-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 24px; padding: 40px;
+    position: relative; overflow: hidden;
+  }
+  .stats-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2), transparent);
+  }
+  .stats-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+  }
+  .stat-item { padding: 20px; background: var(--surface2); border-radius: 16px; }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 36px; font-weight: 800; color: var(--accent);
+    letter-spacing: -2px; line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-label { font-size: 13px; color: var(--muted); font-weight: 400; }
+
+  .hero-badge {
+    margin-top: 24px; padding: 16px 20px;
+    background: var(--surface2); border-radius: 14px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .badge-icon {
+    width: 40px; height: 40px; background: rgba(232,255,71,0.1);
+    border-radius: 10px; display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+  }
+  .badge-text strong { display: block; font-size: 14px; font-weight: 600; }
+  .badge-text span { font-size: 12px; color: var(--muted); }
+
+  /* SECTION BASE */
+  section { padding: 100px 48px; }
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+  .section-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 800; letter-spacing: -2px; line-height: 1.1;
+    margin-bottom: 16px;
+  }
+  .section-sub {
+    color: var(--muted); font-size: 17px; max-width: 560px;
+    font-weight: 300; line-height: 1.7;
+  }
+  .section-head { margin-bottom: 60px; }
+
+  /* BRANDS / EXPERIENCE */
+  .experience { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .exp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+  .exp-card {
+    background: var(--bg);
+    padding: 40px 36px;
+    position: relative; overflow: hidden;
+    transition: background 0.3s;
+  }
+  .exp-card:hover { background: var(--surface2); }
+  .exp-card::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+    background: var(--accent); transform: scaleX(0);
+    transform-origin: left; transition: transform 0.3s;
+  }
+  .exp-card:hover::after { transform: scaleX(1); }
+  .exp-period {
+    font-size: 12px; color: var(--accent); font-weight: 500;
+    letter-spacing: 0.5px; margin-bottom: 12px;
+  }
+  .exp-role {
+    font-family: 'Syne', sans-serif;
+    font-size: 20px; font-weight: 700; margin-bottom: 6px;
+    letter-spacing: -0.5px;
+  }
+  .exp-company { font-size: 15px; color: var(--muted); margin-bottom: 20px; }
+  .exp-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag {
+    font-size: 11px; padding: 4px 10px;
+    border: 1px solid var(--border); border-radius: 100px;
+    color: var(--muted);
+  }
+
+  /* CASE STUDIES */
+  .cases-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .case-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px; padding: 32px;
+    position: relative; overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s;
+    cursor: default;
+  }
+  .case-card:hover { transform: translateY(-4px); border-color: rgba(232,255,71,0.2); }
+  .case-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 20px; }
+  .case-icon {
+    width: 48px; height: 48px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+  }
+  .case-icon.yellow { background: rgba(232,255,71,0.12); }
+  .case-icon.orange { background: rgba(255,107,53,0.12); }
+  .case-icon.blue { background: rgba(71,130,255,0.12); }
+  .case-badge {
+    font-size: 11px; padding: 4px 10px;
+    background: rgba(232,255,71,0.1);
+    color: var(--accent); border-radius: 100px;
+    font-weight: 500;
+  }
+  .case-brand { font-size: 12px; color: var(--muted); margin-bottom: 8px; letter-spacing: 0.5px; text-transform: uppercase; }
+  .case-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 18px; font-weight: 700; margin-bottom: 12px;
+    letter-spacing: -0.3px;
+  }
+  .case-desc { font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 24px; }
+  .case-metrics { display: flex; gap: 20px; }
+  .metric { }
+  .metric-val {
+    font-family: 'Syne', sans-serif;
+    font-size: 24px; font-weight: 800; color: var(--accent);
+    letter-spacing: -1px; line-height: 1;
+  }
+  .metric-label { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+  /* SERVICES */
+  .services { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+  .service-item {
+    padding: 36px;
+    background: var(--bg);
+    transition: background 0.3s;
+    position: relative;
+  }
+  .service-item:hover { background: var(--surface2); }
+  .service-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 48px; font-weight: 800; color: rgba(255,255,255,0.04);
+    letter-spacing: -3px; margin-bottom: -10px;
+    line-height: 1;
+  }
+  .service-icon { font-size: 28px; margin-bottom: 16px; }
+  .service-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 18px; font-weight: 700; margin-bottom: 10px;
+    letter-spacing: -0.3px;
+  }
+  .service-desc { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+  /* TOOLS */
+  .tools-wrap { display: flex; flex-wrap: wrap; gap: 10px; }
+  .tool-chip {
+    padding: 8px 16px;
+    border: 1px solid var(--border); border-radius: 100px;
+    font-size: 13px; color: var(--text); font-weight: 400;
+    transition: all 0.2s; cursor: default;
+  }
+  .tool-chip:hover { border-color: var(--accent); color: var(--accent); background: rgba(232,255,71,0.05); }
+  .tool-chip.hot { border-color: rgba(232,255,71,0.3); color: var(--accent); background: rgba(232,255,71,0.06); }
+
+  /* CONTACT */
+  .contact { background: var(--bg); }
+  .contact-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;
+  }
+  .contact-links { display: flex; flex-direction: column; gap: 16px; margin-top: 40px; }
+  .contact-link {
+    display: flex; align-items: center; gap: 16px;
+    padding: 20px 24px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 16px; text-decoration: none; color: var(--text);
+    transition: all 0.2s;
+  }
+  .contact-link:hover { border-color: rgba(232,255,71,0.3); transform: translateX(6px); }
+  .contact-link-icon {
+    width: 42px; height: 42px; border-radius: 10px;
+    background: rgba(232,255,71,0.08);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+  }
+  .contact-link-info strong { display: block; font-size: 14px; font-weight: 600; }
+  .contact-link-info span { font-size: 13px; color: var(--muted); }
+  .contact-link-arrow { margin-left: auto; color: var(--muted); font-size: 18px; }
+
+  .contact-form-side { }
+  .cta-big {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(36px, 4vw, 60px);
+    font-weight: 800; letter-spacing: -3px; line-height: 1.05;
+    margin-bottom: 20px;
+  }
+  .cta-big span { color: var(--accent); }
+  .cta-sub { color: var(--muted); font-size: 16px; line-height: 1.7; margin-bottom: 40px; font-weight: 300; }
+
+  /* FOOTER */
+  footer {
+    padding: 32px 48px;
+    border-top: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  footer p { font-size: 13px; color: var(--muted); }
+  footer a { color: var(--accent); text-decoration: none; }
+
+  /* DIVIDER LINE */
+  .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+  /* SCROLL REVEAL */
+  .reveal {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    section { padding: 80px 24px; }
+    .hero { padding: 100px 24px 60px; }
+    .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+    .exp-grid, .cases-grid, .services-grid { grid-template-columns: 1fr; }
+    .contact-inner { grid-template-columns: 1fr; gap: 48px; }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Ahmed<span>.</span></div>
+  <ul class="nav-links">
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#cases">Case Studies</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#tools">Tools</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Let's Talk →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-left reveal">
+      <div class="hero-tag">Available for New Projects</div>
+      <h1>
+        Digital Marketing
+        <em>That Drives</em>
+        Real Growth.
+      </h1>
+      <p class="hero-desc">
+        I'm Ahmed Hassan — a data-driven Marketing Manager with 5+ years scaling e-commerce brands in Egypt and Saudi Arabia. I turn ad budgets into measurable revenue.
+      </p>
+      <div class="hero-actions">
+        <a href="#cases" class="btn-primary">View Case Studies ↓</a>
+        <a href="#contact" class="btn-ghost">Get in Touch</a>
+      </div>
+    </div>
+    <div class="hero-right reveal">
+      <div class="stats-card">
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-num">30X</div>
+            <div class="stat-label">Peak ROAS Achieved</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">1M+</div>
+            <div class="stat-label">SAR Campaigns Managed</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">5+</div>
+            <div class="stat-label">Years of Experience</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">10+</div>
+            <div class="stat-label">Industries Served</div>
+          </div>
+        </div>
+        <div class="hero-badge">
+          <div class="badge-icon">📍</div>
+          <div class="badge-text">
+            <strong>Currently @ Alsaif Gallery</strong>
+            <span>Digital Marketing Manager — Saudi Arabia</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- EXPERIENCE -->
+<section class="experience" id="experience">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <div class="section-label">Career Timeline</div>
+      <h2 class="section-title">Where I've Built<br>My Expertise</h2>
+    </div>
+    <div class="exp-grid">
+      <div class="exp-card reveal">
+        <div class="exp-period">APR 2024 — PRESENT</div>
+        <div class="exp-role">Digital Marketing Manager</div>
+        <div class="exp-company">Alsaif Gallery · Saudi Arabia 🇸🇦</div>
+        <div class="exp-tags">
+          <span class="tag">Omnichannel Strategy</span>
+          <span class="tag">Meta & Google Ads</span>
+          <span class="tag">Snapchat Ads</span>
+          <span class="tag">Budget Planning</span>
+          <span class="tag">Brand Growth</span>
+        </div>
+      </div>
+      <div class="exp-card reveal">
+        <div class="exp-period">MAY 2022 — APR 2024</div>
+        <div class="exp-role">Digital Marketing Manager</div>
+        <div class="exp-company">Raneen.com · Egypt 🇪🇬</div>
+        <div class="exp-tags">
+          <span class="tag">Growth Strategy</span>
+          <span class="tag">Multi-channel Campaigns</span>
+          <span class="tag">Team Leadership</span>
+          <span class="tag">KPI Management</span>
+          <span class="tag">Tracking Setup</span>
+        </div>
+      </div>
+      <div class="exp-card reveal">
+        <div class="exp-period">JUN 2020 — MAY 2022</div>
+        <div class="exp-role">Marketing Team Leader</div>
+        <div class="exp-company">Raneen.com · Egypt 🇪🇬</div>
+        <div class="exp-tags">
+          <span class="tag">BI Dashboards</span>
+          <span class="tag">Performance Reports</span>
+          <span class="tag">Team Mentoring</span>
+          <span class="tag">Power BI</span>
+          <span class="tag">Data Studio</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDIES -->
+<section id="cases" style="padding: 100px 48px;">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <div class="section-label">Results That Speak</div>
+      <h2 class="section-title">Campaign Case Studies</h2>
+      <p class="section-sub">Real campaigns, real numbers. Here's what data-driven marketing looks like in practice.</p>
+    </div>
+    <div class="cases-grid">
+
+      <div class="case-card reveal">
+        <div class="case-header">
+          <div class="case-icon yellow">🇸🇦</div>
+          <span class="case-badge">Saudi Market</span>
+        </div>
+        <div class="case-brand">Alsaif Gallery</div>
+        <div class="case-title">Saudi Founding Day Campaign</div>
+        <div class="case-desc">Managed a full-funnel mega campaign across Meta, Google, and Snapchat during Saudi Founding Day with a budget exceeding 1M SAR — delivering a 13X return on ad spend.</div>
+        <div class="case-metrics">
+          <div class="metric">
+            <div class="metric-val">13X</div>
+            <div class="metric-label">ROAS</div>
+          </div>
+          <div class="metric">
+            <div class="metric-val">1M+</div>
+            <div class="metric-label">SAR Spent</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-card reveal">
+        <div class="case-header">
+          <div class="case-icon orange">🏅</div>
+          <span class="case-badge">Saudi Market</span>
+        </div>
+        <div class="case-brand">Alsaif Gallery</div>
+        <div class="case-title">Saudi National Day Campaign</div>
+        <div class="case-desc">Executed the Saudi National Day campaign with a strategic media mix across Google, Snapchat, and Meta — achieving an exceptional 15X ROAS on a 590K SAR budget.</div>
+        <div class="case-metrics">
+          <div class="metric">
+            <div class="metric-val">15X</div>
+            <div class="metric-label">ROAS</div>
+          </div>
+          <div class="metric">
+            <div class="metric-val">590K</div>
+            <div class="metric-label">SAR Spent</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-card reveal">
+        <div class="case-header">
+          <div class="case-icon blue">⚡</div>
+          <span class="case-badge">Peak Result</span>
+        </div>
+        <div class="case-brand">Alsaif Gallery</div>
+        <div class="case-title">National Day (23 SEP) — Record ROAS</div>
+        <div class="case-desc">A precision-targeted National Day campaign (23 SEP) achieved a record-breaking 30X ROAS — delivering the highest return in the brand's paid advertising history.</div>
+        <div class="case-metrics">
+          <div class="metric">
+            <div class="metric-val">30X</div>
+            <div class="metric-label">ROAS</div>
+          </div>
+          <div class="metric">
+            <div class="metric-val">25K</div>
+            <div class="metric-label">SAR Spent</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-card reveal">
+        <div class="case-header">
+          <div class="case-icon yellow">🛋️</div>
+          <span class="case-badge">Egypt Market</span>
+        </div>
+        <div class="case-brand">Raneen.com</div>
+        <div class="case-title">Black Friday E-commerce Season</div>
+        <div class="case-desc">Led the full Black Friday campaign strategy for Raneen.com across home appliances and housewares — driving peak seasonal revenue through data-backed audience targeting and funnel optimization.</div>
+        <div class="case-metrics">
+          <div class="metric">
+            <div class="metric-val">↑</div>
+            <div class="metric-label">Peak Revenue</div>
+          </div>
+          <div class="metric">
+            <div class="metric-val">Multi</div>
+            <div class="metric-label">Categories</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-card reveal">
+        <div class="case-header">
+          <div class="case-icon orange">💐</div>
+          <span class="case-badge">Egypt Market</span>
+        </div>
+        <div class="case-brand">Raneen.com</div>
+        <div class="case-title">Mother's Day Season Campaign</div>
+        <div class="case-desc">Executed a targeted seasonal campaign for Mother's Day, leveraging customer segmentation and retargeting to maximize conversions across home goods and kitchen categories.</div>
+        <div class="case-metrics">
+          <div class="metric">
+            <div class="metric-val">↑</div>
+            <div class="metric-label">Conversions</div>
+          </div>
+          <div class="metric">
+            <div class="metric-val">CRM</div>
+            <div class="metric-label">Retargeting</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-card reveal">
+        <div class="case-header">
+          <div class="case-icon blue">📊</div>
+          <span class="case-badge">Analytics</span>
+        </div>
+        <div class="case-brand">Raneen.com</div>
+        <div class="case-title">Marketing Intelligence Dashboard</div>
+        <div class="case-desc">Built a comprehensive BI dashboard aggregating all channel KPIs — from paid media to email — giving leadership real-time visibility and enabling faster, data-driven decisions.</div>
+        <div class="case-metrics">
+          <div class="metric">
+            <div class="metric-val">360°</div>
+            <div class="metric-label">View</div>
+          </div>
+          <div class="metric">
+            <div class="metric-val">Power BI</div>
+            <div class="metric-label">Platform</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <div class="section-label">What I Do</div>
+      <h2 class="section-title">Services</h2>
+    </div>
+    <div class="services-grid">
+      <div class="service-item reveal">
+        <div class="service-num">01</div>
+        <div class="service-icon">🎯</div>
+        <div class="service-name">Performance Marketing</div>
+        <div class="service-desc">Full-funnel paid campaigns on Meta, Google, TikTok & Snapchat — built for maximum ROI and scalable growth.</div>
+      </div>
+      <div class="service-item reveal">
+        <div class="service-num">02</div>
+        <div class="service-icon">🛒</div>
+        <div class="service-name">E-Commerce Growth</div>
+        <div class="service-desc">End-to-end e-commerce marketing strategy across Shopify, Magento, and expandCart — from acquisition to retention.</div>
+      </div>
+      <div class="service-item reveal">
+        <div class="service-num">03</div>
+        <div class="service-icon">📈</div>
+        <div class="service-name">Marketing Analytics & BI</div>
+        <div class="service-desc">Custom dashboards with Power BI and GA4 that turn raw data into clear decisions. Built for marketing teams and executives.</div>
+      </div>
+      <div class="service-item reveal">
+        <div class="service-num">04</div>
+        <div class="service-icon">🗺️</div>
+        <div class="service-name">Marketing Strategy</div>
+        <div class="service-desc">Comprehensive go-to-market and growth plans with channel allocation, budget modeling, and KPI frameworks.</div>
+      </div>
+      <div class="service-item reveal">
+        <div class="service-num">05</div>
+        <div class="service-icon">🔁</div>
+        <div class="service-name">Omnichannel Campaigns</div>
+        <div class="service-desc">Seamless customer journeys across online and offline — with unified tracking, messaging, and attribution.</div>
+      </div>
+      <div class="service-item reveal">
+        <div class="service-num">06</div>
+        <div class="service-icon">👥</div>
+        <div class="service-name">Team Leadership & Consulting</div>
+        <div class="service-desc">Building and mentoring marketing teams, or advising brands on scaling their digital operations efficiently.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section id="tools" style="padding: 100px 48px;">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <div class="section-label">Tech Stack</div>
+      <h2 class="section-title">Tools & Platforms</h2>
+      <p class="section-sub">The tools I use daily to plan, execute, analyze, and optimize campaigns at scale.</p>
+    </div>
+    <div style="margin-bottom: 40px;" class="reveal">
+      <p style="font-size: 13px; color: var(--muted); margin-bottom: 16px; letter-spacing: 1px; text-transform: uppercase; font-weight: 600;">Advertising Platforms</p>
+      <div class="tools-wrap">
+        <span class="tool-chip hot">Meta Ads</span>
+        <span class="tool-chip hot">Google Ads</span>
+        <span class="tool-chip hot">Snapchat Ads</span>
+        <span class="tool-chip">TikTok Ads</span>
+      </div>
+    </div>
+    <div style="margin-bottom: 40px;" class="reveal">
+      <p style="font-size: 13px; color: var(--muted); margin-bottom: 16px; letter-spacing: 1px; text-transform: uppercase; font-weight: 600;">Analytics & Data</p>
+      <div class="tools-wrap">
+        <span class="tool-chip hot">GA4</span>
+        <span class="tool-chip hot">Power BI</span>
+        <span class="tool-chip">Google Data Studio</span>
+        <span class="tool-chip">Tableau</span>
+        <span class="tool-chip">GTM</span>
+        <span class="tool-chip">SQL</span>
+        <span class="tool-chip">Power Pivot</span>
+      </div>
+    </div>
+    <div style="margin-bottom: 40px;" class="reveal">
+      <p style="font-size: 13px; color: var(--muted); margin-bottom: 16px; letter-spacing: 1px; text-transform: uppercase; font-weight: 600;">Marketing Tools</p>
+      <div class="tools-wrap">
+        <span class="tool-chip">SEMrush</span>
+        <span class="tool-chip">HotJar</span>
+        <span class="tool-chip">MoEngage</span>
+        <span class="tool-chip">Emarsys</span>
+        <span class="tool-chip">Clarity</span>
+        <span class="tool-chip">Adjust</span>
+      </div>
+    </div>
+    <div class="reveal">
+      <p style="font-size: 13px; color: var(--muted); margin-bottom: 16px; letter-spacing: 1px; text-transform: uppercase; font-weight: 600;">E-Commerce Platforms</p>
+      <div class="tools-wrap">
+        <span class="tool-chip">Shopify</span>
+        <span class="tool-chip">Magento</span>
+        <span class="tool-chip">ExpandCart</span>
+        <span class="tool-chip">WordPress / WooCommerce</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="reveal">
+      <div class="section-label">Get In Touch</div>
+      <div class="cta-big">
+        Ready to<br>grow <span>together?</span>
+      </div>
+      <p class="cta-sub">Whether you're looking for a marketing leader, a consultant, or a strategic partner — let's talk about how I can help your brand scale.</p>
+      <div class="contact-links">
+        <a href="mailto:khamis.digital@gmail.com" class="contact-link">
+          <div class="contact-link-icon">✉️</div>
+          <div class="contact-link-info">
+            <strong>Email</strong>
+            <span>khamis.digital@gmail.com</span>
+          </div>
+          <span class="contact-link-arrow">→</span>
+        </a>
+        <a href="tel:01067795828" class="contact-link">
+          <div class="contact-link-icon">📞</div>
+          <div class="contact-link-info">
+            <strong>Phone / WhatsApp</strong>
+            <span>01067795828</span>
+          </div>
+          <span class="contact-link-arrow">→</span>
+        </a>
+        <a href="https://www.linkedin.com/in/ahmed-khamis-277b23177/" target="_blank" class="contact-link">
+          <div class="contact-link-icon">💼</div>
+          <div class="contact-link-info">
+            <strong>LinkedIn</strong>
+            <span>linkedin.com/in/ahmed-khamis-277b23177</span>
+          </div>
+          <span class="contact-link-arrow">→</span>
+        </a>
+      </div>
+    </div>
+    <div class="reveal" style="padding-top: 60px;">
+      <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 40px; position: relative; overflow: hidden;">
+        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2),transparent);"></div>
+        <p style="font-family:'Syne',sans-serif;font-size:20px;font-weight:700;margin-bottom:16px;letter-spacing:-0.5px;">"Marketing without data is like driving with your eyes closed."</p>
+        <p style="font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:28px;">Every campaign I run is backed by real-time data, customer behavior analysis, and a clear understanding of business goals — not guesswork.</p>
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-weight:800;font-family:'Syne',sans-serif;color:#000;font-size:16px;">A</div>
+          <div>
+            <strong style="font-size:14px;display:block;">Ahmed Hassan</strong>
+            <span style="font-size:13px;color:var(--muted);">Digital Marketing Manager</span>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:20px;background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:28px;">
+        <p style="font-size:13px;color:var(--muted);margin-bottom:16px;">Industries I've worked with:</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+          <span class="tag">Home Appliances</span>
+          <span class="tag">Electronics</span>
+          <span class="tag">Fashion</span>
+          <span class="tag">Furniture</span>
+          <span class="tag">Kitchen</span>
+          <span class="tag">Baby Supplies</span>
+          <span class="tag">Hair Products</span>
+          <span class="tag">Interior Design</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Ahmed Hassan · Digital Marketing Manager</p>
+  <p>Built with passion · <a href="mailto:khamis.digital@gmail.com">khamis.digital@gmail.com</a></p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
