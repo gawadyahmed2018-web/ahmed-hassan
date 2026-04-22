@@ -3,19 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ahmed Hassan — Digital Marketing Manager</title>
+<title>Ahmed Khamis — Marketing Manager</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0a0a0a;
-    --surface: #111111;
-    --surface2: #181818;
-    --accent: #e8ff47;
+    --bg: #f2f2f0;
+    --surface: #e8e8e6;
+    --surface2: #dededd;
+    --accent: #111111;
     --accent2: #ff6b35;
-    --text: #f0f0f0;
-    --muted: #888;
-    --border: rgba(255,255,255,0.07);
+    --text: #111111;
+    --muted: #777;
+    --border: rgba(0,0,0,0.09);
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -25,7 +25,7 @@
   body {
     background: var(--bg);
     color: var(--text);
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 16px;
     line-height: 1.6;
     overflow-x: hidden;
@@ -36,16 +36,16 @@
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
     padding: 20px 48px;
-    background: rgba(10,10,10,0.85);
+    background: rgba(242,242,240,0.92);
     backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--border);
   }
   .nav-logo {
-    font-family: 'Syne', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-weight: 800; font-size: 18px;
     letter-spacing: -0.5px;
   }
-  .nav-logo span { color: var(--accent); }
+  .nav-logo span { color: var(--accent2); }
   .nav-links { display: flex; gap: 36px; list-style: none; }
   .nav-links a {
     color: var(--muted); text-decoration: none; font-size: 14px;
@@ -54,7 +54,7 @@
   }
   .nav-links a:hover { color: var(--text); }
   .nav-cta {
-    background: var(--accent); color: #000;
+    background: var(--accent); color: #fff;
     padding: 10px 22px; border-radius: 100px;
     font-weight: 600; font-size: 14px; text-decoration: none;
     transition: opacity 0.2s, transform 0.2s;
@@ -73,7 +73,7 @@
     content: '';
     position: absolute; top: -200px; right: -100px;
     width: 700px; height: 700px;
-    background: radial-gradient(circle, rgba(232,255,71,0.08) 0%, transparent 65%);
+    background: radial-gradient(circle, rgba(255,107,53,0.06) 0%, transparent 65%);
     pointer-events: none;
   }
   .hero::after {
@@ -89,15 +89,15 @@
   }
   .hero-tag {
     display: inline-flex; align-items: center; gap: 8px;
-    background: rgba(232,255,71,0.1); border: 1px solid rgba(232,255,71,0.2);
+    background: rgba(255,107,53,0.08); border: 1px solid rgba(255,107,53,0.2);
     padding: 6px 14px; border-radius: 100px;
-    font-size: 12px; font-weight: 500; color: var(--accent);
+    font-size: 12px; font-weight: 500; color: var(--accent2);
     letter-spacing: 1px; text-transform: uppercase;
     margin-bottom: 28px;
   }
   .hero-tag::before {
     content: ''; width: 6px; height: 6px;
-    background: var(--accent); border-radius: 50%;
+    background: var(--accent2); border-radius: 50%;
     animation: pulse 2s infinite;
   }
   @keyframes pulse {
@@ -105,13 +105,13 @@
     50% { opacity: 0.5; transform: scale(0.8); }
   }
   .hero h1 {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(48px, 6vw, 82px);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: clamp(56px, 7vw, 96px);
     font-weight: 800; line-height: 1.0;
     letter-spacing: -3px; margin-bottom: 24px;
   }
   .hero h1 em {
-    font-style: normal; color: var(--accent);
+    font-style: normal; color: var(--accent2);
     display: block;
   }
   .hero-desc {
@@ -147,15 +147,15 @@
   .stats-card::before {
     content: '';
     position: absolute; top: 0; left: 0; right: 0; height: 2px;
-    background: linear-gradient(90deg, var(--accent), var(--accent2), transparent);
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
   }
   .stats-grid {
     display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
   }
   .stat-item { padding: 20px; background: var(--surface2); border-radius: 16px; }
   .stat-num {
-    font-family: 'Syne', sans-serif;
-    font-size: 36px; font-weight: 800; color: var(--accent);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 36px; font-weight: 800; color: var(--accent2);
     letter-spacing: -2px; line-height: 1;
     margin-bottom: 6px;
   }
@@ -183,7 +183,7 @@
     margin-bottom: 16px;
   }
   .section-title {
-    font-family: 'Syne', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: clamp(32px, 4vw, 52px);
     font-weight: 800; letter-spacing: -2px; line-height: 1.1;
     margin-bottom: 16px;
@@ -207,7 +207,7 @@
   .exp-card::after {
     content: '';
     position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
-    background: var(--accent); transform: scaleX(0);
+    background: var(--accent2); transform: scaleX(0);
     transform-origin: left; transition: transform 0.3s;
   }
   .exp-card:hover::after { transform: scaleX(1); }
@@ -216,7 +216,7 @@
     letter-spacing: 0.5px; margin-bottom: 12px;
   }
   .exp-role {
-    font-family: 'Syne', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 20px; font-weight: 700; margin-bottom: 6px;
     letter-spacing: -0.5px;
   }
@@ -250,13 +250,13 @@
   .case-icon.blue { background: rgba(71,130,255,0.12); }
   .case-badge {
     font-size: 11px; padding: 4px 10px;
-    background: rgba(232,255,71,0.1);
-    color: var(--accent); border-radius: 100px;
+    background: rgba(255,107,53,0.08);
+    color: var(--accent2); border-radius: 100px;
     font-weight: 500;
   }
   .case-brand { font-size: 12px; color: var(--muted); margin-bottom: 8px; letter-spacing: 0.5px; text-transform: uppercase; }
   .case-title {
-    font-family: 'Syne', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 18px; font-weight: 700; margin-bottom: 12px;
     letter-spacing: -0.3px;
   }
@@ -264,8 +264,8 @@
   .case-metrics { display: flex; gap: 20px; }
   .metric { }
   .metric-val {
-    font-family: 'Syne', sans-serif;
-    font-size: 24px; font-weight: 800; color: var(--accent);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 24px; font-weight: 800; color: var(--accent2);
     letter-spacing: -1px; line-height: 1;
   }
   .metric-label { font-size: 11px; color: var(--muted); margin-top: 2px; }
@@ -281,14 +281,14 @@
   }
   .service-item:hover { background: var(--surface2); }
   .service-num {
-    font-family: 'Syne', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 48px; font-weight: 800; color: rgba(255,255,255,0.04);
     letter-spacing: -3px; margin-bottom: -10px;
     line-height: 1;
   }
   .service-icon { font-size: 28px; margin-bottom: 16px; }
   .service-name {
-    font-family: 'Syne', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 18px; font-weight: 700; margin-bottom: 10px;
     letter-spacing: -0.3px;
   }
@@ -303,7 +303,7 @@
     transition: all 0.2s; cursor: default;
   }
   .tool-chip:hover { border-color: var(--accent); color: var(--accent); background: rgba(232,255,71,0.05); }
-  .tool-chip.hot { border-color: rgba(232,255,71,0.3); color: var(--accent); background: rgba(232,255,71,0.06); }
+  .tool-chip.hot { border-color: rgba(255,107,53,0.3); color: var(--accent2); background: rgba(255,107,53,0.05); }
 
   /* CONTACT */
   .contact { background: var(--bg); }
@@ -319,10 +319,10 @@
     border-radius: 16px; text-decoration: none; color: var(--text);
     transition: all 0.2s;
   }
-  .contact-link:hover { border-color: rgba(232,255,71,0.3); transform: translateX(6px); }
+  .contact-link:hover { border-color: rgba(255,107,53,0.3); transform: translateX(6px); }
   .contact-link-icon {
     width: 42px; height: 42px; border-radius: 10px;
-    background: rgba(232,255,71,0.08);
+    background: rgba(255,107,53,0.08);
     display: flex; align-items: center; justify-content: center;
     font-size: 18px;
   }
@@ -332,12 +332,12 @@
 
   .contact-form-side { }
   .cta-big {
-    font-family: 'Syne', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: clamp(36px, 4vw, 60px);
     font-weight: 800; letter-spacing: -3px; line-height: 1.05;
     margin-bottom: 20px;
   }
-  .cta-big span { color: var(--accent); }
+  .cta-big span { color: var(--accent2); }
   .cta-sub { color: var(--muted); font-size: 16px; line-height: 1.7; margin-bottom: 40px; font-weight: 300; }
 
   /* FOOTER */
@@ -347,7 +347,7 @@
     display: flex; align-items: center; justify-content: space-between;
   }
   footer p { font-size: 13px; color: var(--muted); }
-  footer a { color: var(--accent); text-decoration: none; }
+  footer a { color: var(--accent2); text-decoration: none; }
 
   /* DIVIDER LINE */
   .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
@@ -397,12 +397,12 @@
         <div style="position:relative; flex-shrink:0;">
           <img src="WhatsApp Image 2026-04-22 at 2.48.45 PM.jpeg" alt="Ahmed Khamis"
             style="width:100px; height:100px; border-radius:50%; object-fit:cover; object-position:top;
-                   border:3px solid var(--accent); display:block;">
+                   border:3px solid var(--accent2); display:block;">
           <div style="position:absolute; bottom:4px; right:4px; width:14px; height:14px;
-                      background:var(--accent); border-radius:50%; border:2px solid var(--bg);"></div>
+                      background:var(--accent2); border-radius:50%; border:2px solid var(--bg);"></div>
         </div>
         <div>
-          <h2 style="font-family:'Syne',sans-serif; font-size:28px; font-weight:800;
+          <h2 style="font-family:'Plus Jakarta Sans',sans-serif; font-size:28px; font-weight:800;
                      letter-spacing:-1px; line-height:1.1; margin-bottom:6px;">Ahmed Khamis</h2>
           <p style="font-size:13px; color:var(--muted); font-weight:400; line-height:1.5;">
             Marketing Manager&nbsp;<span style="color:var(--accent);">|</span>&nbsp;Digital Analyst&nbsp;<span style="color:var(--accent);">|</span>&nbsp;E-Commerce Expert
@@ -780,10 +780,10 @@
     <div class="reveal" style="padding-top: 60px;">
       <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 40px; position: relative; overflow: hidden;">
         <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2),transparent);"></div>
-        <p style="font-family:'Syne',sans-serif;font-size:20px;font-weight:700;margin-bottom:16px;letter-spacing:-0.5px;">"Marketing without data is like driving with your eyes closed."</p>
+        <p style="font-family:'Plus Jakarta Sans',sans-serif;font-size:20px;font-weight:700;margin-bottom:16px;letter-spacing:-0.5px;">"Marketing without data is like driving with your eyes closed."</p>
         <p style="font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:28px;">Every campaign I run is backed by real-time data, customer behavior analysis, and a clear understanding of business goals — not guesswork.</p>
         <div style="display:flex;align-items:center;gap:12px;">
-          <div style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-weight:800;font-family:'Syne',sans-serif;color:#000;font-size:16px;">A</div>
+          <div style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-weight:800;font-family:'Plus Jakarta Sans',sans-serif;color:#000;font-size:16px;">A</div>
           <div>
             <strong style="font-size:14px;display:block;">Ahmed Khamis</strong>
             <span style="font-size:13px;color:var(--muted);">Digital Marketing Manager</span>
