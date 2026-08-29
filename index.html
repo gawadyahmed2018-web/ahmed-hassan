@@ -4,6 +4,25 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ahmed Khamis — Marketing Manager</title>
+<meta name="description" content="Ahmed Khamis — data-driven Marketing Manager with 8+ years scaling e-commerce brands across Egypt, Saudi Arabia and the Gulf. Performance marketing, e-commerce growth and marketing analytics that turn ad budgets into measurable revenue.">
+<meta name="author" content="Ahmed Khamis">
+<meta name="keywords" content="Marketing Manager, Performance Marketing, E-Commerce Growth, Digital Marketing, Media Buying, Meta Ads, Google Ads, GA4, Power BI, Egypt, Saudi Arabia, Gulf">
+<link rel="canonical" href="https://gawadyahmed2018-web.github.io/ahmed-hassan/">
+<meta name="theme-color" content="#ff6b35">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23ff6b35'/%3E%3Ctext x='50' y='71' font-size='62' font-family='Arial,sans-serif' font-weight='bold' fill='white' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ahmed Khamis — Marketing Manager">
+<meta property="og:description" content="Data-driven Marketing Manager with 8+ years scaling e-commerce brands in Egypt & Saudi Arabia. I turn ad budgets into measurable revenue.">
+<meta property="og:url" content="https://gawadyahmed2018-web.github.io/ahmed-hassan/">
+<meta property="og:image" content="https://gawadyahmed2018-web.github.io/ahmed-hassan/photo.jpg">
+<meta property="og:image:alt" content="Ahmed Khamis — Marketing Manager">
+<meta property="og:site_name" content="Ahmed Khamis">
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ahmed Khamis — Marketing Manager">
+<meta name="twitter:description" content="Data-driven Marketing Manager with 8+ years scaling e-commerce brands in Egypt & Saudi Arabia.">
+<meta name="twitter:image" content="https://gawadyahmed2018-web.github.io/ahmed-hassan/photo.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -60,6 +79,11 @@
     transition: opacity 0.2s, transform 0.2s;
   }
   .nav-cta:hover { opacity: 0.85; transform: translateY(-1px); }
+.nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; flex-direction: column; gap: 5px; }
+.nav-toggle span { display: block; width: 24px; height: 2px; background: var(--text); border-radius: 2px; transition: transform 0.3s, opacity 0.3s; }
+.nav-toggle.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle.active span:nth-child(2) { opacity: 0; }
+.nav-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
   /* HERO */
   .hero {
@@ -363,7 +387,15 @@
   /* ── TABLET ── */
   @media (max-width: 900px) {
     nav { padding: 16px 20px; }
-    .nav-links { display: none; }
+    .nav-toggle { display: flex; }
+.nav-links {
+display: none; position: absolute; top: 100%; left: 0; right: 0;
+flex-direction: column; gap: 4px; padding: 14px 20px 20px;
+background: rgba(242,242,240,0.98); backdrop-filter: blur(16px);
+border-bottom: 1px solid var(--border); box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+}
+.nav-links.open { display: flex; }
+.nav-links a { padding: 10px 4px; font-size: 15px; }
     section { padding: 60px 20px; }
     .hero { padding: 90px 20px 50px; }
     .hero-inner { grid-template-columns: 1fr; gap: 36px; }
@@ -454,13 +486,18 @@
 <!-- NAV -->
 <nav>
   <div class="nav-logo">Ahmed Khamis<span>.</span></div>
-  <ul class="nav-links">
+  <ul class="nav-links" id="primary-nav">
     <li><a href="#experience">Experience</a></li>
     <li><a href="#cases">Case Studies</a></li>
     <li><a href="#services">Services</a></li>
     <li><a href="#tools">Tools</a></li>
   </ul>
-  <a href="#contact" class="nav-cta">Let's Talk →</a>
+  <div style="display:flex;align-items:center;gap:14px;">
+<a href="#contact" class="nav-cta">Let's Talk →</a>
+<button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">
+<span></span><span></span><span></span>
+</button>
+</div>
 </nav>
 
 <!-- HERO -->
@@ -483,8 +520,8 @@
         </div>
         <!-- Name + Title -->
         <div style="padding-bottom:8px;">
-          <h2 style="font-family:'Plus Jakarta Sans',sans-serif; font-size:38px; font-weight:800;
-                     letter-spacing:-2px; line-height:1.05; margin-bottom:8px;">Ahmed Khamis</h2>
+          <div style="font-family:'Plus Jakarta Sans',sans-serif; font-size:38px; font-weight:800;
+                     letter-spacing:-2px; line-height:1.05; margin-bottom:8px;">Ahmed Khamis</div>
           <p style="font-size:14px; color:#1a1a1a; font-weight:600; line-height:1.6; letter-spacing:0.1px;">
             Marketing Manager&nbsp;<span style="color:#ff6b35;font-weight:300;">|</span>&nbsp;Digital Analyst&nbsp;<span style="color:#ff6b35;font-weight:300;">|</span>&nbsp;E-Commerce Expert
           </p>
@@ -546,27 +583,27 @@
         <h2 class="section-title" style="font-size:clamp(28px,3vw,42px);margin-bottom:24px;">Markets I've<br>Worked In</h2>
         <div class="flags-wrap" style="display:flex;flex-wrap:wrap;gap:14px;">
           <div style="display:flex;flex-direction:column;align-items:center;gap:8px;padding:18px 22px;background:#fff;border:1.5px solid #e0e0de;border-radius:16px;min-width:100px;flex:1;box-shadow:0 2px 12px rgba(0,0,0,0.06);">
-            <img src="https://flagcdn.com/w80/eg.png" width="52" style="border-radius:6px;display:block;">
+            <img src="https://flagcdn.com/w80/eg.png" alt="Egypt flag" width="52" style="border-radius:6px;display:block;">
             <strong style="font-size:13px;font-weight:600;">Egypt</strong>
           </div>
           <div style="display:flex;flex-direction:column;align-items:center;gap:8px;padding:18px 22px;background:#fff;border:1.5px solid #e0e0de;border-radius:16px;min-width:100px;flex:1;box-shadow:0 2px 12px rgba(0,0,0,0.06);">
-            <img src="https://flagcdn.com/w80/sa.png" width="52" style="border-radius:6px;display:block;">
+            <img src="https://flagcdn.com/w80/sa.png" alt="Saudi Arabia flag" width="52" style="border-radius:6px;display:block;">
             <strong style="font-size:13px;font-weight:600;">Saudi Arabia</strong>
           </div>
           <div style="display:flex;flex-direction:column;align-items:center;gap:8px;padding:18px 22px;background:#fff;border:1.5px solid #e0e0de;border-radius:16px;min-width:100px;flex:1;box-shadow:0 2px 12px rgba(0,0,0,0.06);">
-            <img src="https://flagcdn.com/w80/ae.png" width="52" style="border-radius:6px;display:block;">
+            <img src="https://flagcdn.com/w80/ae.png" alt="United Arab Emirates flag" width="52" style="border-radius:6px;display:block;">
             <strong style="font-size:13px;font-weight:600;">UAE</strong>
           </div>
           <div style="display:flex;flex-direction:column;align-items:center;gap:8px;padding:18px 22px;background:#fff;border:1.5px solid #e0e0de;border-radius:16px;min-width:100px;flex:1;box-shadow:0 2px 12px rgba(0,0,0,0.06);">
-            <img src="https://flagcdn.com/w80/qa.png" width="52" style="border-radius:6px;display:block;">
+            <img src="https://flagcdn.com/w80/qa.png" alt="Qatar flag" width="52" style="border-radius:6px;display:block;">
             <strong style="font-size:13px;font-weight:600;">Qatar</strong>
           </div>
           <div style="display:flex;flex-direction:column;align-items:center;gap:8px;padding:18px 22px;background:#fff;border:1.5px solid #e0e0de;border-radius:16px;min-width:100px;flex:1;box-shadow:0 2px 12px rgba(0,0,0,0.06);">
-            <img src="https://flagcdn.com/w80/kw.png" width="52" style="border-radius:6px;display:block;">
+            <img src="https://flagcdn.com/w80/kw.png" alt="Kuwait flag" width="52" style="border-radius:6px;display:block;">
             <strong style="font-size:13px;font-weight:600;">Kuwait</strong>
           </div>
           <div style="display:flex;flex-direction:column;align-items:center;gap:8px;padding:18px 22px;background:#fff;border:1.5px solid #e0e0de;border-radius:16px;min-width:100px;flex:1;box-shadow:0 2px 12px rgba(0,0,0,0.06);">
-            <img src="https://flagcdn.com/w80/om.png" width="52" style="border-radius:6px;display:block;">
+            <img src="https://flagcdn.com/w80/om.png" alt="Oman flag" width="52" style="border-radius:6px;display:block;">
             <strong style="font-size:13px;font-weight:600;">Oman</strong>
           </div>
         </div>
@@ -651,34 +688,34 @@
       <div class="exp-card reveal">
         <div class="exp-period" style="color:var(--accent2);font-weight:600;">JAN 2026 — PRESENT</div>
         <div class="exp-role" style="font-size:22px;">Marketing Manager</div>
-        <div class="exp-company" style="font-size:17px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:10px;"><img src="https://www.google.com/s2/favicons?domain=raneen.com&sz=64" width="32" height="32" style="border-radius:8px;object-fit:contain;background:#fff;padding:2px;" onerror="this.style.display='none'"> Raneen.com · Egypt 🇪🇬</div>
+        <div class="exp-company" style="font-size:17px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:10px;"><img src="https://www.google.com/s2/favicons?domain=raneen.com&sz=64" width="32" height="32" alt="" style="border-radius:8px;object-fit:contain;background:#fff;padding:2px;" onerror="this.style.display='none'"> Raneen.com · Egypt 🇪🇬</div>
         <div class="exp-tags">
           <span class="tag">Marketing Strategy</span>
           <span class="tag">Team Leadership</span>
           <span class="tag">Performance Marketing</span>
           <span class="tag">E-Commerce Growth</span>
         </div>
-        <a href="https://raneen.com" target="_blank" style="display:inline-flex;align-items:center;gap:6px;margin-top:16px;font-size:13px;color:var(--accent2);text-decoration:none;font-weight:600;">🔗 raneen.com ↗</a>
+        <a href="https://raneen.com" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:6px;margin-top:16px;font-size:13px;color:var(--accent2);text-decoration:none;font-weight:600;">🔗 raneen.com ↗</a>
       </div>
 
       <!-- CH&BE -->
       <div class="exp-card reveal">
         <div class="exp-period" style="color:var(--accent2);font-weight:600;">JUL 2025 — DEC 2025</div>
         <div class="exp-role" style="font-size:22px;">Digital Marketing Manager</div>
-        <div class="exp-company" style="font-size:17px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:10px;"><img src="https://www.google.com/s2/favicons?domain=chandbe.com&sz=64" width="32" height="32" style="border-radius:8px;object-fit:contain;background:#fff;padding:2px;" onerror="this.style.display='none'"> CH&BE</div>
+        <div class="exp-company" style="font-size:17px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:10px;"><img src="https://www.google.com/s2/favicons?domain=chandbe.com&sz=64" width="32" height="32" alt="" style="border-radius:8px;object-fit:contain;background:#fff;padding:2px;" onerror="this.style.display='none'"> CH&BE</div>
         <div class="exp-tags">
           <span class="tag">Digital Strategy</span>
           <span class="tag">Paid Media</span>
           <span class="tag">Growth Marketing</span>
         </div>
-        <a href="https://chandbe.com/" target="_blank" style="display:inline-flex;align-items:center;gap:6px;margin-top:16px;font-size:13px;color:var(--accent2);text-decoration:none;font-weight:600;">🔗 chandbe.com ↗</a>
+        <a href="https://chandbe.com/" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:6px;margin-top:16px;font-size:13px;color:var(--accent2);text-decoration:none;font-weight:600;">🔗 chandbe.com ↗</a>
       </div>
 
       <!-- Alsaif Gallery -->
       <div class="exp-card reveal">
         <div class="exp-period" style="color:var(--accent2);font-weight:600;">APR 2024 — JUL 2025</div>
         <div class="exp-role" style="font-size:22px;">Digital Marketing Manager</div>
-        <div class="exp-company" style="font-size:17px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:10px;"><img src="https://www.google.com/s2/favicons?domain=alsaifgallery.com.sa&sz=64" width="32" height="32" style="border-radius:8px;object-fit:contain;background:#fff;padding:2px;" onerror="this.style.display='none'"> Alsaif Gallery · Saudi Arabia 🇸🇦</div>
+        <div class="exp-company" style="font-size:17px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:10px;"><img src="https://www.google.com/s2/favicons?domain=alsaifgallery.com.sa&sz=64" width="32" height="32" alt="" style="border-radius:8px;object-fit:contain;background:#fff;padding:2px;" onerror="this.style.display='none'"> Alsaif Gallery · Saudi Arabia 🇸🇦</div>
         <div class="exp-tags">
           <span class="tag">Omnichannel Strategy</span>
           <span class="tag">Meta & Google Ads</span>
@@ -686,14 +723,14 @@
           <span class="tag">Budget Planning</span>
           <span class="tag">Brand Growth</span>
         </div>
-        <a href="https://alsaifgallery.com/" target="_blank" style="display:inline-flex;align-items:center;gap:6px;margin-top:16px;font-size:13px;color:var(--accent2);text-decoration:none;font-weight:600;">🔗 alsaifgallery.com ↗</a>
+        <a href="https://alsaifgallery.com/" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:6px;margin-top:16px;font-size:13px;color:var(--accent2);text-decoration:none;font-weight:600;">🔗 alsaifgallery.com ↗</a>
       </div>
 
       <!-- Digital Marketing Manager Raneen -->
       <div class="exp-card reveal">
         <div class="exp-period" style="color:var(--accent2);font-weight:600;">MAY 2022 — APR 2024</div>
         <div class="exp-role" style="font-size:22px;">Digital Marketing Manager</div>
-        <div class="exp-company" style="font-size:17px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:10px;"><img src="https://www.google.com/s2/favicons?domain=raneen.com&sz=64" width="32" height="32" style="border-radius:8px;object-fit:contain;background:#fff;padding:2px;" onerror="this.style.display='none'"> Raneen.com · Egypt 🇪🇬</div>
+        <div class="exp-company" style="font-size:17px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:10px;"><img src="https://www.google.com/s2/favicons?domain=raneen.com&sz=64" width="32" height="32" alt="" style="border-radius:8px;object-fit:contain;background:#fff;padding:2px;" onerror="this.style.display='none'"> Raneen.com · Egypt 🇪🇬</div>
         <div class="exp-tags">
           <span class="tag">Growth Strategy</span>
           <span class="tag">Multi-channel Campaigns</span>
@@ -701,14 +738,14 @@
           <span class="tag">KPI Management</span>
           <span class="tag">Tracking Setup</span>
         </div>
-        <a href="https://raneen.com" target="_blank" style="display:inline-flex;align-items:center;gap:6px;margin-top:16px;font-size:13px;color:var(--accent2);text-decoration:none;font-weight:600;">🔗 raneen.com ↗</a>
+        <a href="https://raneen.com" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:6px;margin-top:16px;font-size:13px;color:var(--accent2);text-decoration:none;font-weight:600;">🔗 raneen.com ↗</a>
       </div>
 
       <!-- Marketing Team Leader -->
       <div class="exp-card reveal">
         <div class="exp-period" style="color:var(--accent2);font-weight:600;">JUN 2020 — MAY 2022</div>
         <div class="exp-role" style="font-size:22px;">Marketing Team Leader</div>
-        <div class="exp-company" style="font-size:17px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:10px;"><img src="https://www.google.com/s2/favicons?domain=raneen.com&sz=64" width="32" height="32" style="border-radius:8px;object-fit:contain;background:#fff;padding:2px;" onerror="this.style.display='none'"> Raneen.com · Egypt 🇪🇬</div>
+        <div class="exp-company" style="font-size:17px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:10px;"><img src="https://www.google.com/s2/favicons?domain=raneen.com&sz=64" width="32" height="32" alt="" style="border-radius:8px;object-fit:contain;background:#fff;padding:2px;" onerror="this.style.display='none'"> Raneen.com · Egypt 🇪🇬</div>
         <div class="exp-tags">
           <span class="tag">BI Dashboards</span>
           <span class="tag">Performance Reports</span>
@@ -718,7 +755,7 @@
           <span class="tag">Media Buying</span>
           <span class="tag">Team Management</span>
         </div>
-        <a href="https://raneen.com" target="_blank" style="display:inline-flex;align-items:center;gap:6px;margin-top:16px;font-size:13px;color:var(--accent2);text-decoration:none;font-weight:600;">🔗 raneen.com ↗</a>
+        <a href="https://raneen.com" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:6px;margin-top:16px;font-size:13px;color:var(--accent2);text-decoration:none;font-weight:600;">🔗 raneen.com ↗</a>
       </div>
 
     </div>
@@ -741,10 +778,10 @@
           <div class="case-icon blue">💳</div>
           <span class="case-badge">Fintech</span>
         </div>
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;"><img src="https://www.google.com/s2/favicons?domain=madfu.com.sa&sz=64" width="36" height="36" style="border-radius:8px;object-fit:contain;background:#fff;padding:2px;" onerror="this.style.display='none'"><div><div class="case-brand" style="margin-bottom:0;">Saudi Arabia 🇸🇦</div></div></div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;"><img src="https://www.google.com/s2/favicons?domain=madfu.com.sa&sz=64" width="36" height="36" alt="" style="border-radius:8px;object-fit:contain;background:#fff;padding:2px;" onerror="this.style.display='none'"><div><div class="case-brand" style="margin-bottom:0;">Saudi Arabia 🇸🇦</div></div></div>
         <div class="case-title">Madfu</div>
         <div class="case-desc">Digital marketing strategy and performance campaigns for a leading Saudi fintech platform.</div>
-        <a href="https://madfu.com.sa/ar/home" target="_blank" style="display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-size:13px;color:var(--accent2);text-decoration:none;font-weight:600;">🔗 madfu.com.sa ↗</a>
+        <a href="https://madfu.com.sa/ar/home" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-size:13px;color:var(--accent2);text-decoration:none;font-weight:600;">🔗 madfu.com.sa ↗</a>
       </div>
 
       <!-- Propath -->
@@ -753,10 +790,10 @@
           <div class="case-icon yellow">🎓</div>
           <span class="case-badge">E-Commerce · Education</span>
         </div>
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;"><img src="https://www.google.com/s2/favicons?domain=propath.pro&sz=64" width="36" height="36" style="border-radius:8px;object-fit:contain;background:#fff;padding:2px;" onerror="this.style.display='none'"><div><div class="case-brand" style="margin-bottom:0;">Saudi Arabia 🇸🇦</div></div></div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;"><img src="https://www.google.com/s2/favicons?domain=propath.pro&sz=64" width="36" height="36" alt="" style="border-radius:8px;object-fit:contain;background:#fff;padding:2px;" onerror="this.style.display='none'"><div><div class="case-brand" style="margin-bottom:0;">Saudi Arabia 🇸🇦</div></div></div>
         <div class="case-title">Propath</div>
         <div class="case-desc">Growth marketing for an e-commerce platform specializing in educational products and solutions.</div>
-        <a href="https://propath.pro/" target="_blank" style="display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-size:13px;color:var(--accent2);text-decoration:none;font-weight:600;">🔗 propath.pro ↗</a>
+        <a href="https://propath.pro/" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-size:13px;color:var(--accent2);text-decoration:none;font-weight:600;">🔗 propath.pro ↗</a>
       </div>
 
       <!-- The Chapter -->
@@ -765,10 +802,10 @@
           <div class="case-icon orange">🏥</div>
           <span class="case-badge">Medical</span>
         </div>
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;"><img src="https://www.google.com/s2/favicons?domain=thechapter.sa&sz=64" width="36" height="36" style="border-radius:8px;object-fit:contain;background:#fff;padding:2px;" onerror="this.style.display='none'"><div><div class="case-brand" style="margin-bottom:0;">Saudi Arabia 🇸🇦</div></div></div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;"><img src="https://www.google.com/s2/favicons?domain=thechapter.sa&sz=64" width="36" height="36" alt="" style="border-radius:8px;object-fit:contain;background:#fff;padding:2px;" onerror="this.style.display='none'"><div><div class="case-brand" style="margin-bottom:0;">Saudi Arabia 🇸🇦</div></div></div>
         <div class="case-title">The Chapter</div>
         <div class="case-desc">Digital marketing and patient acquisition campaigns for a medical services brand in Saudi Arabia.</div>
-        <a href="https://learn.thechapter.sa/" target="_blank" style="display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-size:13px;color:var(--accent2);text-decoration:none;font-weight:600;">🔗 thechapter.sa ↗</a>
+        <a href="https://learn.thechapter.sa/" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-size:13px;color:var(--accent2);text-decoration:none;font-weight:600;">🔗 thechapter.sa ↗</a>
       </div>
 
       <!-- Gabster AI -->
@@ -777,10 +814,10 @@
           <div class="case-icon blue">☁️</div>
           <span class="case-badge">SaaS · AI</span>
         </div>
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;"><img src="https://www.google.com/s2/favicons?domain=gabster.ai&sz=64" width="36" height="36" style="border-radius:8px;object-fit:contain;background:#fff;padding:2px;" onerror="this.style.display='none'"><div><div class="case-brand" style="margin-bottom:0;">Saudi Arabia 🇸🇦</div></div></div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;"><img src="https://www.google.com/s2/favicons?domain=gabster.ai&sz=64" width="36" height="36" alt="" style="border-radius:8px;object-fit:contain;background:#fff;padding:2px;" onerror="this.style.display='none'"><div><div class="case-brand" style="margin-bottom:0;">Saudi Arabia 🇸🇦</div></div></div>
         <div class="case-title">Gabster AI</div>
         <div class="case-desc">Go-to-market strategy and user acquisition for an AI-powered SaaS product in the Saudi market.</div>
-        <a href="https://www.gabster.ai/ar" target="_blank" style="display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-size:13px;color:var(--accent2);text-decoration:none;font-weight:600;">🔗 gabster.ai ↗</a>
+        <a href="https://www.gabster.ai/ar" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-size:13px;color:var(--accent2);text-decoration:none;font-weight:600;">🔗 gabster.ai ↗</a>
       </div>
 
       <!-- Aromist -->
@@ -789,10 +826,10 @@
           <div class="case-icon yellow">🛍️</div>
           <span class="case-badge">E-Commerce</span>
         </div>
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;"><img src="https://www.google.com/s2/favicons?domain=aromist-sa.com&sz=64" width="36" height="36" style="border-radius:8px;object-fit:contain;background:#fff;padding:2px;" onerror="this.style.display='none'"><div><div class="case-brand" style="margin-bottom:0;">Saudi Arabia 🇸🇦</div></div></div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;"><img src="https://www.google.com/s2/favicons?domain=aromist-sa.com&sz=64" width="36" height="36" alt="" style="border-radius:8px;object-fit:contain;background:#fff;padding:2px;" onerror="this.style.display='none'"><div><div class="case-brand" style="margin-bottom:0;">Saudi Arabia 🇸🇦</div></div></div>
         <div class="case-title">Aromist</div>
         <div class="case-desc">Full performance marketing setup and campaign management for a Saudi e-commerce brand.</div>
-        <a href="https://aromist-sa.com/" target="_blank" style="display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-size:13px;color:var(--accent2);text-decoration:none;font-weight:600;">🔗 aromist-sa.com ↗</a>
+        <a href="https://aromist-sa.com/" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-size:13px;color:var(--accent2);text-decoration:none;font-weight:600;">🔗 aromist-sa.com ↗</a>
       </div>
 
     </div>
@@ -1056,15 +1093,23 @@
           </div>
           <span class="contact-link-arrow">→</span>
         </a>
-        <a href="tel:01067795828" class="contact-link">
+        <a href="tel:+201067795828" class="contact-link">
           <div class="contact-link-icon">📞</div>
           <div class="contact-link-info">
-            <strong>Phone / WhatsApp</strong>
-            <span>01067795828</span>
+            <strong>Phone</strong>
+            <span>+20 106 779 5828</span>
           </div>
           <span class="contact-link-arrow">→</span>
         </a>
-        <a href="https://www.linkedin.com/in/ahmed-khamis-277b23177/" target="_blank" class="contact-link">
+        <a href="https://wa.me/201067795828" target="_blank" rel="noopener noreferrer" class="contact-link">
+          <div class="contact-link-icon">💬</div>
+          <div class="contact-link-info">
+            <strong>WhatsApp</strong>
+            <span>+20 106 779 5828</span>
+          </div>
+          <span class="contact-link-arrow">→</span>
+        </a>
+        <a href="https://www.linkedin.com/in/ahmed-khamis-277b23177/" target="_blank" rel="noopener noreferrer" class="contact-link">
           <div class="contact-link-icon">💼</div>
           <div class="contact-link-info">
             <strong>LinkedIn</strong>
@@ -1122,6 +1167,22 @@
     });
   }, { threshold: 0.1 });
   reveals.forEach(el => observer.observe(el));
+
+// Mobile nav toggle
+const navToggle = document.querySelector('.nav-toggle');
+const navLinks = document.querySelector('.nav-links');
+if (navToggle && navLinks) {
+navToggle.addEventListener('click', () => {
+const open = navLinks.classList.toggle('open');
+navToggle.classList.toggle('active', open);
+navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+});
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+navLinks.classList.remove('open');
+navToggle.classList.remove('active');
+navToggle.setAttribute('aria-expanded', 'false');
+}));
+}
 </script>
 </body>
 </html>
