@@ -1,0 +1,568 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ahmed Khamis — Marketing Manager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Archivo:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+/* Layout: editorial two-column hero, then a ruled proof strip like a KPI report header */
+:root{
+  --paper:#F5F4F0;      /* warm off-white ground */
+  --surface:#FFFFFF;
+  --ink:#0F1A2A;        /* deep navy ink */
+  --ink-2:#4A5568;      /* secondary text */
+  --line:#DCD9D0;       /* hairlines */
+  --accent:#B5652B;     /* copper — the single accent */
+  --accent-soft:#F3E6DA;
+  --accent-ink:#8A4718;   /* accent text on soft fill */
+  --good:#1F7A4D;
+  --f-display:"Archivo", "Helvetica Neue", Arial, sans-serif;
+  --f-body:"IBM Plex Sans", "Segoe UI", Arial, sans-serif;
+  --f-title:"Bricolage Grotesque", "Archivo", Arial, sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --wrap:1180px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 16px/1.6 var(--f-body);-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+.wrap{max-width:var(--wrap);margin:0 auto;padding-inline:24px}
+.label{font:500 12px/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2)}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:20;background:var(--ink);border-bottom:2px solid var(--accent)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;height:68px}
+.brand{font:800 18px/1 var(--f-display);letter-spacing:-.01em;text-decoration:none}
+.brand span{color:var(--accent)}
+.menu{display:flex;gap:28px;list-style:none;margin:0;padding:0}
+.menu{overflow-x:auto;scrollbar-width:none}
+.menu a{text-decoration:none;font-size:14px;font-weight:500;color:color-mix(in srgb,var(--paper) 72%,transparent);white-space:nowrap;padding-block:6px;border-bottom:2px solid transparent}
+.menu a:hover,.menu a:focus-visible{color:var(--paper);border-bottom-color:var(--accent)}
+.btn{display:inline-flex;align-items:center;gap:10px;height:46px;padding-inline:22px;border-radius:6px;font:600 15px/1 var(--f-body);text-decoration:none;border:1px solid var(--ink);transition:background .2s,color .2s}
+.btn-solid{background:var(--ink);color:var(--paper)}
+.btn-solid:hover{background:var(--accent);border-color:var(--accent)}
+.btn-ghost{background:transparent;color:var(--ink)}
+.btn-ghost:hover{background:var(--ink);color:var(--paper)}
+.nav .btn{height:40px;padding-inline:16px;font-size:14px;background:var(--accent);border-color:var(--accent);color:#fff;flex:none}
+.nav .btn:hover{background:var(--paper);border-color:var(--paper);color:var(--ink)}
+a:focus-visible,.btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+/* HERO */
+.hero{padding-block:72px 56px}
+.hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:64px;align-items:center}
+.hero-copy{min-width:0}
+.status{display:inline-flex;align-items:center;gap:10px;margin-bottom:28px}
+.status i{width:8px;height:8px;border-radius:50%;background:var(--good);box-shadow:0 0 0 4px color-mix(in srgb,var(--good) 18%,transparent)}
+h1{font:800 clamp(52px,7.4vw,104px)/.95 var(--f-display);letter-spacing:-.035em;margin:0 0 22px}
+.tagline{font:700 clamp(22px,2.4vw,32px)/1.2 var(--f-display);letter-spacing:-.015em;margin:0 0 20px;text-wrap:balance}
+.tagline em{font-style:normal;color:var(--accent)}
+.roles{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 28px;padding:0;list-style:none}
+.roles li{font:700 17px/1 var(--f-display);letter-spacing:-.005em;color:var(--accent-ink);background:var(--accent-soft);padding:11px 16px;border-radius:999px;display:inline-flex;align-items:center;gap:9px}
+.roles li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.lede{font-size:19px;line-height:1.6;color:var(--ink-2);max-width:56ch;margin:0 0 36px}
+.lede b{color:var(--ink);font-weight:600}
+.ctas{display:flex;flex-wrap:wrap;gap:12px}
+
+.portrait{position:relative;margin:0}
+.portrait .frame{aspect-ratio:4/5;max-width:100%;border-radius:8px;overflow:hidden;background:var(--ink)}
+.portrait img{width:100%;height:100%;object-fit:cover;object-position:center 20%}
+.portrait figcaption{position:absolute;left:-28px;bottom:28px;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px 18px;box-shadow:0 12px 32px -12px rgba(15,26,42,.25)}
+.portrait figcaption strong{display:block;font:700 15px/1.3 var(--f-display)}
+.portrait figcaption span{font-size:13px;color:var(--ink-2)}
+
+/* STAT CARDS */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:64px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:24px 22px;min-width:0;display:flex;flex-direction:column;justify-content:space-between;gap:18px;transition:border-color .2s,transform .2s}
+.card:hover{border-color:var(--ink);transform:translateY(-2px)}
+.card .top{display:flex;justify-content:space-between;align-items:center}
+.card .num{font:800 clamp(34px,3.4vw,48px)/1 var(--f-display);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.card .num span{color:var(--accent)}
+.card .what{font-size:14px;font-weight:500;color:var(--ink-2)}
+.card.role{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.card.role .label{color:color-mix(in srgb,var(--paper) 65%,transparent)}
+.card.role{grid-column:1/-1;flex-direction:row;align-items:center;flex-wrap:wrap;gap:24px 40px;padding:32px 36px}
+.card.role .head{display:flex;flex-direction:column;gap:14px;min-width:0;flex:1 1 320px}
+.card.role strong{display:block;font:800 clamp(28px,3vw,40px)/1.05 var(--f-display);letter-spacing:-.02em}
+.card.role .logo{flex:none;background:#fff;border-radius:8px;padding:16px 22px;display:flex;align-items:center}
+.card.role .logo img{height:44px;width:auto}
+.card.role .end{display:flex;align-items:center;gap:28px;flex-wrap:wrap}
+.card.role .visit{color:var(--paper);font-weight:600;font-size:14px;text-decoration:none;border-bottom:1px solid var(--accent);padding-bottom:2px;white-space:nowrap}
+.card.role .visit:hover{color:var(--accent)}
+.card.role .where{font-size:16px;color:color-mix(in srgb,var(--paper) 75%,transparent);margin-top:6px}
+.card.role .live{display:inline-flex;align-items:center;gap:8px}
+.card.role .live i{width:8px;height:8px;border-radius:50%;background:#3CC48A;box-shadow:0 0 0 4px rgba(60,196,138,.2)}
+
+
+/* SECTIONS (shared) */
+.section{padding-block:96px}
+.section + .section{border-top:1px solid var(--line)}
+.sec-head{display:grid;grid-template-columns:1fr;gap:24px 64px;align-items:end;margin-bottom:56px}
+.sec-head h2{font:800 clamp(34px,4.2vw,56px)/1.02 var(--f-display);letter-spacing:-.03em;margin:14px 0 0;text-wrap:balance}
+.sec-head p{margin:0;color:var(--ink-2);font-size:17px;max-width:52ch}
+.block{display:grid;grid-template-columns:260px 1fr;gap:24px 48px;padding-block:36px;border-top:1px solid var(--ink)}
+.block-title{min-width:0}
+.block-title h3{font:700 clamp(30px,3vw,40px)/1.05 var(--f-title);letter-spacing:-.02em;margin:0;color:var(--ink)}
+.block-title h3 span{display:block;color:var(--accent)}
+.block-body{min-width:0}
+
+/* GEO */
+.geo{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+.country{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:18px 16px;display:flex;flex-direction:column;gap:14px;min-width:0;transition:border-color .2s}
+.country:hover{border-color:var(--ink)}
+.country img{width:40px;height:28px;object-fit:cover;border-radius:3px;box-shadow:0 0 0 1px var(--line)}
+.country strong{font:700 17px/1.2 var(--f-display)}
+.country span{margin-top:auto;font:500 11px/1 var(--f-mono);letter-spacing:.08em;color:var(--ink-2)}
+
+/* INDUSTRIES */
+.sectors{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.sector{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:20px 18px;min-width:0}
+.sector .ic{width:36px;height:36px;border-radius:8px;background:var(--accent-soft);color:var(--accent-ink);display:grid;place-items:center;margin-bottom:16px}
+.sector .ic svg{width:18px;height:18px}
+.sector strong{display:block;font:700 17px/1.2 var(--f-display)}
+.sector p{margin:6px 0 0;font-size:13.5px;line-height:1.45;color:var(--ink-2)}
+.cats{margin-top:28px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.cats .label{flex-basis:100%;margin-bottom:4px;color:var(--ink)}
+.chip{font:600 16px/1 var(--f-display);padding:11px 16px;border-radius:999px;background:var(--accent-soft);color:var(--accent-ink)}
+
+/* MODELS */
+.models{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line);border-radius:8px;background:var(--surface);overflow:hidden}
+.model{padding:24px 22px;border-left:1px solid var(--line);min-width:0}
+.model:first-child{border-left:0}
+.model strong{display:block;font:800 26px/1 var(--f-display);letter-spacing:-.02em;color:var(--ink)}
+.model p{margin:10px 0 0;font-size:14px;line-height:1.45;color:var(--ink-2)}
+
+/* CAMPAIGNS */
+.sec-head .intro{margin:18px 0 0;color:var(--ink-2);font-size:17px;max-width:60ch}
+.camps{display:flex;flex-direction:column;gap:28px}
+.camp{display:grid;grid-template-columns:1.15fr 1fr;background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.camp:nth-child(even) .camp-media{order:2;border-left:1px solid var(--line);border-right:0}
+.camp-media{background:var(--ink);padding:20px;display:flex;flex-direction:column;gap:12px;min-width:0;border-right:1px solid var(--line)}
+.video{position:relative;aspect-ratio:16/9;max-width:100%;border-radius:6px;overflow:hidden;background:#0A121E;display:grid;place-items:center;cursor:pointer;border:0;padding:0;width:100%;color:var(--paper)}
+.video img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.85;transition:opacity .2s}
+.video:hover img{opacity:1}
+.video .play{position:relative;width:68px;height:68px;border-radius:50%;background:var(--accent);display:grid;place-items:center;box-shadow:0 10px 30px -8px rgba(0,0,0,.5);transition:transform .2s}
+.video:hover .play{transform:scale(1.06)}
+.video .play svg{width:24px;height:24px;margin-left:4px;fill:#fff}
+.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.video.empty{cursor:default;border:1px dashed color-mix(in srgb,var(--paper) 30%,transparent);background:transparent}
+.video.empty span{font:500 12px/1.4 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:color-mix(in srgb,var(--paper) 60%,transparent);text-align:center}
+.creatives{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.creative{aspect-ratio:1;max-width:100%;border-radius:5px;overflow:hidden;background:#1B2737;border:0;padding:0;cursor:zoom-in;display:grid;place-items:center}
+.creative img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
+.creative:hover img{transform:scale(1.05)}
+.creative.empty{cursor:default;border:1px dashed color-mix(in srgb,var(--paper) 22%,transparent);background:transparent}
+.creative.empty span{font:500 10px/1 var(--f-mono);letter-spacing:.08em;color:color-mix(in srgb,var(--paper) 45%,transparent)}
+.camp-body{padding:32px 34px;display:flex;flex-direction:column;gap:22px;min-width:0}
+.camp-meta{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center}
+.camp-meta .brand-tag{font:700 13px/1 var(--f-display);letter-spacing:.06em;text-transform:uppercase;color:var(--accent-ink);background:var(--accent-soft);padding:7px 11px;border-radius:4px}
+.camp h3{font:700 clamp(26px,2.6vw,34px)/1.08 var(--f-title);letter-spacing:-.02em;margin:0;text-wrap:balance}
+.camp-body > p{margin:0;color:var(--ink-2);font-size:15.5px;line-height:1.6}
+.camp-kpis{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--ink);border-bottom:1px solid var(--line)}
+.camp-kpis div{padding:16px 14px 14px;border-left:1px solid var(--line);min-width:0}
+.camp-kpis div:first-child{border-left:0;padding-left:0}
+.camp-kpis b{display:block;font:800 clamp(24px,2.3vw,32px)/1 var(--f-display);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.camp-kpis b small{font-size:.5em;color:var(--ink-2);margin-right:3px}
+.camp-kpis span{display:block;margin-top:8px;font-size:13px;color:var(--ink-2)}
+.camp-kpis em{font-style:normal;color:var(--good);font-weight:600}
+.camp-note{display:flex;gap:12px;align-items:flex-start;background:var(--paper);border-radius:6px;padding:14px 16px;font-size:14px;line-height:1.5}
+.camp-note b{font:800 18px/1 var(--f-display);color:var(--accent);white-space:nowrap}
+.channels{display:flex;flex-wrap:wrap;gap:8px}
+.channels span{font:500 12px/1 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;padding:8px 10px;border:1px solid var(--line);border-radius:4px}
+/* LIGHTBOX */
+.lb{position:fixed;inset:0;z-index:50;background:rgba(8,14,24,.92);display:grid;place-items:center;padding:24px}
+.lb img{max-height:88vh;max-width:min(92vw,1100px);border-radius:6px}
+.lb button{position:absolute;top:calc(16px + env(safe-area-inset-top,0px));right:16px;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:transparent;color:#fff;font-size:22px;cursor:pointer}
+
+/* COMPANY BLOCKS */
+.company{display:flex;flex-direction:column;gap:40px}
+.co-head{display:grid;grid-template-columns:1fr 1.1fr;gap:32px 48px;background:var(--ink);color:var(--paper);border-radius:12px;padding:40px;align-items:start}
+.co-id{display:flex;flex-direction:column;gap:20px;min-width:0}
+.co-logo{background:#fff;border-radius:8px;padding:14px 20px;width:max-content;max-width:100%}
+.co-logo img{height:46px;width:auto}
+.co-id h3{font:700 clamp(34px,3.6vw,48px)/1 var(--f-title);letter-spacing:-.025em;margin:0}
+.co-id p{margin:0;color:color-mix(in srgb,var(--paper) 72%,transparent);font-size:16px;max-width:44ch}
+.co-id .meta{display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center}
+.co-id .meta .label{color:color-mix(in srgb,var(--paper) 60%,transparent)}
+.co-id .meta a{color:var(--paper);font-weight:600;font-size:14px;text-decoration:none;border-bottom:1px solid var(--accent);padding-bottom:2px}
+.co-id .meta a:hover{color:var(--accent)}
+.stints{display:flex;flex-direction:column;gap:14px;min-width:0}
+.stint{border:1px solid color-mix(in srgb,var(--paper) 18%,transparent);border-radius:8px;padding:20px 22px}
+.stint.now{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,transparent)}
+.stint-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.stint-top .label{color:color-mix(in srgb,var(--paper) 65%,transparent)}
+.stint-top .tag{font:600 12px/1 var(--f-display);letter-spacing:.04em;text-transform:uppercase;padding:6px 10px;border-radius:4px;background:var(--accent);color:#fff}
+.role-row{display:flex;justify-content:space-between;gap:12px;padding-block:10px;border-top:1px solid color-mix(in srgb,var(--paper) 12%,transparent);flex-wrap:wrap}
+.role-row:first-of-type{border-top:0;padding-top:0}
+.role-row strong{font:700 18px/1.25 var(--f-display)}
+.role-row span{font:500 13px/1.4 var(--f-mono);color:color-mix(in srgb,var(--paper) 70%,transparent);white-space:nowrap}
+.sub-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;border-bottom:1px solid var(--ink);padding-bottom:14px}
+.sub-head h4{font:700 clamp(24px,2.4vw,30px)/1.1 var(--f-title);letter-spacing:-.015em;margin:0}
+.sub-head h4 span{color:var(--accent)}
+/* PERFORMANCE */
+.perf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.perf{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:22px;display:flex;flex-direction:column;gap:16px;min-width:0}
+.perf-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.perf-top strong{font:700 19px/1.2 var(--f-display)}
+.perf-top .label{font-size:11px}
+.perf .big{font:800 clamp(28px,2.6vw,36px)/1 var(--f-display);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.perf .big small{font-size:.5em;color:var(--ink-2);margin-right:3px}
+.perf .big-l{font-size:13px;color:var(--ink-2);margin-top:6px}
+.perf dl{display:grid;grid-template-columns:repeat(3,1fr);margin:0;border-top:1px solid var(--line)}
+.perf dl div{padding-top:12px;min-width:0}
+.perf dt{font:500 10.5px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.perf dd{margin:6px 0 0;font:700 17px/1 var(--f-display);font-variant-numeric:tabular-nums}
+.perf.tbd .big,.perf.tbd dd{color:var(--line)}
+
+/* SHOWCASE CAMPAIGNS */
+.shows{display:flex;flex-direction:column;gap:28px}
+.show{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.show-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px 32px;flex-wrap:wrap;padding:28px 32px;border-bottom:1px solid var(--line)}
+.show-head h5{font:700 clamp(30px,3.4vw,44px)/1.05 var(--f-title);letter-spacing:-.025em;margin:10px 0 6px}
+.show-head p{margin:0;color:var(--ink-2);font-size:15px}
+.show-grid{display:grid;grid-template-columns:1fr 340px;min-width:0}
+.show-media{background:var(--ink);padding:22px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.vids{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.vids.n1 > *,.vids.n3 > :first-child{grid-column:1/-1}
+.media-l{color:color-mix(in srgb,var(--paper) 60%,transparent);margin-top:6px}
+.creatives.six{display:block;columns:3;column-gap:10px}
+.creatives.six > *{display:block;width:100%;margin-bottom:10px;break-inside:avoid;aspect-ratio:auto}
+.creatives.six > .empty{aspect-ratio:4/3}
+.creatives.six img{height:auto}
+.show-box{padding:28px;display:flex;flex-direction:column;gap:12px;min-width:0;border-left:1px solid var(--line)}
+.show-box p{margin:0 0 12px;font-size:15.5px;line-height:1.6}
+.show-box ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+.show-box li{display:grid;grid-template-columns:16px 1fr;gap:8px;font-size:15px;line-height:1.45}
+.show-box li::before{content:"";width:8px;height:8px;margin-top:7px;border-radius:2px;background:var(--accent)}
+/* GROWTH */
+.growth{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.growth-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.growth-stats div{background:var(--ink);color:var(--paper);border-radius:8px;padding:24px 22px;display:flex;flex-direction:column;justify-content:space-between;gap:14px;min-width:0}
+.growth-stats b{font:800 clamp(36px,3.6vw,50px)/1 var(--f-display);letter-spacing:-.03em;color:#E9A877}
+.growth-stats span{font-size:14px;color:color-mix(in srgb,var(--paper) 75%,transparent)}
+.steps{margin:0;padding:0;list-style:none;counter-reset:st;background:var(--surface);border:1px solid var(--line);border-radius:8px}
+.steps li{counter-increment:st;display:grid;grid-template-columns:44px 1fr;gap:4px 12px;padding:20px 22px;border-top:1px solid var(--line)}
+.steps li:first-child{border-top:0}
+.steps li::before{content:counter(st,decimal-leading-zero);grid-row:span 2;font:500 13px/1.6 var(--f-mono);color:var(--accent)}
+.steps strong{font:700 17px/1.3 var(--f-display)}
+.steps p{margin:0;font-size:14.5px;color:var(--ink-2);line-height:1.5}
+
+@media (max-width:980px){
+  .show-grid{grid-template-columns:1fr}
+  .show-box{border-left:0;border-top:1px solid var(--line)}
+  .growth{grid-template-columns:1fr}
+  .creatives.six{columns:2}
+
+  .co-head{grid-template-columns:1fr;padding:28px}
+  .perf-grid{grid-template-columns:repeat(2,1fr)}
+
+  .camp{grid-template-columns:1fr}
+  .camp:nth-child(even) .camp-media{order:0;border-left:0}
+  .camp-media{border-right:0}
+
+  .sec-head{grid-template-columns:1fr}
+  .block{grid-template-columns:1fr}
+  .geo{grid-template-columns:repeat(3,1fr)}
+  .sectors{grid-template-columns:repeat(2,1fr)}
+  .models{grid-template-columns:repeat(2,1fr)}
+  .model:nth-child(3){border-left:0}
+  .model:nth-child(n+3){border-top:1px solid var(--line)}
+}
+@media (max-width:480px){
+  .show-head{padding:22px 18px}
+  .show-media{padding:14px}
+  .show-box{padding:22px 18px}
+  .vids{grid-template-columns:1fr}
+
+  .co-head{padding:22px 18px}
+  .perf-grid{grid-template-columns:1fr}
+
+  .camp-body{padding:24px 20px}
+  .creatives{grid-template-columns:repeat(2,1fr)}
+  .camp-kpis{grid-template-columns:1fr 1fr}
+  .camp-kpis div:nth-child(3){grid-column:1/-1;border-left:0;padding-left:0;border-top:1px solid var(--line)}
+
+  .section{padding-block:64px}
+  .geo{grid-template-columns:repeat(2,1fr)}
+}
+
+@media (max-width:980px){
+  .menu{gap:20px}
+  .hero-grid{grid-template-columns:1fr;gap:48px}
+  .portrait{max-width:420px}
+  .portrait figcaption{left:16px}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .card.role{padding:26px 22px}
+}
+@media (max-width:480px){
+  .wrap{padding-inline:16px}
+  .hero{padding-block:44px 40px}
+  .lede{font-size:17px}
+  .nav .btn{display:none}
+  .menu{gap:18px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Main">
+  <div class="wrap">
+    <ul class="menu">
+      <li><a href="#about">About</a></li>
+      <li><a href="#campaigns">Campaigns</a></li>
+      <li><a href="#performance">Performance</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#toolkit">Toolkit</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a class="btn btn-solid" href="#contact">Let's talk</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="status label"><i></i>Open to leadership roles · Egypt &amp; GCC</div>
+        <h1>Ahmed Khamis</h1>
+        <p class="tagline">I scale e-commerce revenue across <em>Egypt and the GCC.</em></p>
+        <ul class="roles"><li>Marketing Manager</li><li>Digital Analyst</li><li>E-commerce Expert</li></ul>
+        <p class="lede">A data-driven Marketing Manager with <b>8+ years</b> scaling e-commerce brands across <b>Egypt and the GCC</b>. I turn ad budgets into <b>measurable revenue</b> and build the systems that keep it growing.</p>
+        <div class="ctas">
+          <a class="btn btn-solid" href="#campaigns">See the campaigns →</a>
+          <a class="btn btn-ghost" href="cv.pdf">Download CV</a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/ahmed-khamis-277b23177" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+      <figure class="portrait">
+        <div class="frame"><img src="photo.jpg" alt="Portrait of Ahmed Khamis"></div>
+      </figure>
+    </div>
+
+    <section class="stats" aria-label="At a glance">
+      <div class="card"><div class="top"><span class="label">Budget</span></div><div><div class="num">$10M<span>+</span></div><div class="what">Ad budget managed</div></div></div>
+      <div class="card"><div class="top"><span class="label">Experience</span></div><div><div class="num">8<span>+</span></div><div class="what">Years of experience</div></div></div>
+      <div class="card"><div class="top"><span class="label">Industries</span></div><div><div class="num">10<span>+</span></div><div class="what">Industries served</div></div></div>
+      <div class="card"><div class="top"><span class="label">Portfolio</span></div><div><div class="num">50<span>+</span></div><div class="what">Projects &amp; brands</div></div></div>
+      <div class="card role">
+        <div class="head">
+          <div class="label live"><i></i>Current position</div>
+          <div><strong>Marketing Manager</strong><div class="where">Jan 2026 – Present</div></div>
+        </div>
+        <div class="end">
+          <div class="logo"><img src="https://www.raneen.com/media/logo/stores/2/logo-ar.png" alt="Raneen.com"></div>
+          <a class="visit" href="https://raneen.com" target="_blank" rel="noopener">raneen.com ↗</a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</header>
+
+<section class="section" id="about" aria-labelledby="about-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="label">Reach &amp; experience</span><h2 id="about-h">Six markets, one growth playbook.</h2></div>
+    </div>
+
+    <div class="block">
+      <div class="block-title"><h3>Markets I&rsquo;ve <span>worked in</span></h3></div>
+      <div class="block-body"><div class="geo"><div class="country"><img src="https://flagcdn.com/w80/eg.png" alt="" width="40" height="28"><div><strong>Egypt</strong></div><span>EG</span></div><div class="country"><img src="https://flagcdn.com/w80/sa.png" alt="" width="40" height="28"><div><strong>Saudi Arabia</strong></div><span>KSA</span></div><div class="country"><img src="https://flagcdn.com/w80/ae.png" alt="" width="40" height="28"><div><strong>UAE</strong></div><span>UAE</span></div><div class="country"><img src="https://flagcdn.com/w80/qa.png" alt="" width="40" height="28"><div><strong>Qatar</strong></div><span>QA</span></div><div class="country"><img src="https://flagcdn.com/w80/kw.png" alt="" width="40" height="28"><div><strong>Kuwait</strong></div><span>KW</span></div><div class="country"><img src="https://flagcdn.com/w80/om.png" alt="" width="40" height="28"><div><strong>Oman</strong></div><span>OM</span></div></div></div>
+    </div>
+
+    <div class="block">
+      <div class="block-title"><h3>Industry <span>experience</span></h3></div>
+      <div class="block-body">
+        <div class="sectors"><div class="sector"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.6 12.4a1 1 0 0 0 1 .8h9.7a1 1 0 0 0 1-.8L21 7H6"/></svg></span><strong>E-commerce</strong><p>Marketplaces and online retail at seasonal scale</p></div><div class="sector"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></svg></span><strong>Fintech</strong><p>B2B lead generation and app acquisition</p></div><div class="sector"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19a4.5 4.5 0 0 0 0-9 6 6 0 0 0-11.6 1.5A3.75 3.75 0 0 0 6.5 19z"/></svg></span><strong>SaaS & AI</strong><p>Go-to-market and user acquisition</p></div><div class="sector"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-9-9.5C1.6 7.8 4 4 7.5 4c2 0 3.4 1 4.5 2.5C13.1 5 14.5 4 16.5 4 20 4 22.4 7.8 21 11.5 19 16.5 12 21 12 21z"/></svg></span><strong>Medical</strong><p>Patient acquisition for clinics and services</p></div><div class="sector"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/></svg></span><strong>Education</strong><p>Lead generation for courses and e-learning</p></div></div>
+        <div class="cats"><span class="label">E-commerce categories</span><span class="chip">Home appliances</span><span class="chip">Kitchen appliances</span><span class="chip">Electronics</span><span class="chip">Screens</span><span class="chip">Housewares</span><span class="chip">Furniture</span><span class="chip">Textile</span><span class="chip">Fashion</span><span class="chip">Baby supplies</span><span class="chip">Hair products</span><span class="chip">Safety products</span><span class="chip">Interior design</span><span class="chip">Fragrances</span><span class="chip">Personal care</span><span class="chip">Home décor</span><span class="chip">Educational products</span><span class="chip">Mobile &amp; accessories</span></div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-title"><h3>Business <span>models</span></h3></div>
+      <div class="block-body"><div class="models"><div class="model"><strong>B2C</strong><p>Consumer brands selling direct at volume</p></div><div class="model"><strong>B2B</strong><p>Lead generation and pipeline for business buyers</p></div><div class="model"><strong>Omnichannel</strong><p>Online campaigns that drive store and web sales together</p></div><div class="model"><strong>Marketplace</strong><p>Multi-category platforms with thousands of SKUs</p></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="campaigns" aria-labelledby="camp-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="label">Work &amp; results</span><h2 id="camp-h">The campaigns that moved the numbers.</h2>
+      <p class="intro">Company by company: the roles I held, the mega campaigns I ran, and the performance behind them.</p></div>
+    </div>
+    <div id="companies"></div>
+  </div>
+</section>
+
+<script>
+/* ============================================================
+   COMPANIES DATA — edit numbers, text, videos and images here.
+   youtube: the video ID only (the part after v= in the link)
+   creatives: image paths in the repo, e.g. "creatives/bf-1.jpg"
+   performance: put "" for any number you don't want to show yet
+   ============================================================ */
+const COMPANIES = [
+  {
+    id: "raneen",
+    name: "Raneen.com",
+    logo: "https://www.raneen.com/media/logo/stores/2/logo-ar.png",
+    about: "Egypt's #1 shopping app, a multi-category marketplace for home appliances, electronics, housewares and more.",
+    market: "Egypt",
+    site: "https://raneen.com",
+    stints: [
+      { label: "Jan 2026 – Present", tag: "Current · Rehired", now: true,
+        roles: [ ["Marketing Manager", "Jan 2026 – Present"] ] },
+      { label: "Jun 2020 – Apr 2024 · 3 yrs 11 mos", tag: "", now: false,
+        roles: [ ["Digital Marketing Manager", "May 2022 – Apr 2024"],
+                 ["Marketing Team Leader", "Jun 2020 – May 2022"] ] }
+    ],
+    showcase: [
+      { title: "White Friday", sub: "Egypt's biggest shopping season", date: "Nov 2023",
+        channels: ["Meta","Google Ads","TikTok","CRM"],
+        about: "Raneen's largest sale event of the year, running across home appliances, electronics and housewares.",
+        did: ["Built the campaign strategy and full media plan",
+              "Led creative direction with the design and video team",
+              "Ran full-funnel campaigns across Meta, Google and TikTok",
+              "Optimized daily on live sales and app data"],
+        videos: [], creatives: [] },
+      { title: "Mother's Day", sub: "Gifting season", date: "Mar 2024",
+        channels: ["Meta","Google Ads","CRM"],
+        about: "A gifting campaign focused on home goods and kitchen categories for Mother's Day.",
+        did: ["Segmented customers for gift-led messaging",
+              "Planned retargeting across web and app",
+              "Briefed and approved all campaign creatives",
+              "Tracked category performance through the season"],
+        videos: ["6IspIoAwOxI","_tnVifPXUB8"], creatives: ["creatives/mothers-day-1.jpg","creatives/mothers-day-2.jpg","creatives/mothers-day-3.jpg"] },
+      { title: "على وش جواز", sub: "Wedding season · 3ala Wesh Gawaz", date: "",
+        channels: ["Meta","Google Ads","TikTok"],
+        about: "A wedding-season campaign for couples furnishing a new home, covering appliances, furniture and housewares.",
+        did: ["Built the concept and campaign positioning",
+              "Planned bundles and offers with the category teams",
+              "Ran awareness to conversion across all channels",
+              "Measured results by category and channel"],
+        videos: [], creatives: [] }
+    ],
+    growth: {
+      title: "How Raneen became Egypt's #1 shopping app",
+      stats: [ ["+106%","Revenue growth, White Friday YoY"], ["+104%","Order growth, White Friday YoY"], ["+37%","Traffic growth, White Friday YoY"], ["#1","Shopping app in Egypt"] ],
+      steps: [ ["Fixed the foundation","Rebuilt tracking with the developers so every channel reported real revenue."],
+               ["Built a seasonal calendar","Turned key seasons into planned mega campaigns instead of one-off promotions."],
+               ["Went app-first","Shifted acquisition toward the app, where customers bought more often."],
+               ["Ran on data","Weekly and monthly dashboards gave leadership one view of every KPI."] ]
+    }
+  }
+];
+
+(function(){
+  const esc = t => String(t ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+  const play = '<span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>';
+  const dash = v => v === "" || v == null ? "—" : esc(v);
+
+  const campHTML = (c, co) => {
+    const video = c.youtube
+      ? `<button class="video" data-yt="${esc(c.youtube)}" aria-label="Play ${esc(c.title)} video"><img src="https://i.ytimg.com/vi/${esc(c.youtube)}/hqdefault.jpg" alt="" loading="lazy">${play}</button>`
+      : `<div class="video empty"><span>Campaign video<br>coming soon</span></div>`;
+    const imgs = c.creatives.length
+      ? c.creatives.slice(0,8).map(src => `<button class="creative" data-full="${esc(src)}" aria-label="Open creative"><img src="${esc(src)}" alt="${esc(c.title)} creative" loading="lazy"></button>`).join("")
+      : Array.from({length:4}, (_, k) => `<div class="creative empty"><span>CREATIVE ${k+1}</span></div>`).join("");
+    const kpis = c.kpis.map(([cur, val, lab, delta]) =>
+      `<div><b>${cur ? `<small>${esc(cur)}</small>` : ""}${esc(val)}</b><span>${esc(lab)}${delta ? ` · <em>${esc(delta)}</em>` : ""}</span></div>`).join("");
+    const note = c.note ? `<div class="camp-note"><b>${esc(c.note[0])}</b><span>${esc(c.note[1])}</span></div>` : "";
+    return `<article class="camp">
+      <div class="camp-media">${video}<div class="creatives">${imgs}</div></div>
+      <div class="camp-body">
+        <div class="camp-meta"><span class="brand-tag">${esc(co.name)}</span><span class="label">${esc(co.market)} · ${esc(c.date)}</span></div>
+        <h3>${esc(c.title)}</h3>
+        <p>${esc(c.text)}</p>
+        <div class="camp-kpis">${kpis}</div>
+        ${note}
+        <div class="channels">${c.channels.map(x => `<span>${esc(x)}</span>`).join("")}</div>
+      </div>
+    </article>`;
+  };
+
+  const showHTML = (c, co) => {
+    const vids = c.videos.length
+      ? c.videos.slice(0,3).map(id => `<button class="video" data-yt="${esc(id)}" aria-label="Play ${esc(c.title)} video"><img src="https://i.ytimg.com/vi/${esc(id)}/hqdefault.jpg" alt="" loading="lazy">${play}</button>`).join("")
+      : `<div class="video empty"><span>Main campaign video</span></div><div class="video empty"><span>Video 2</span></div><div class="video empty"><span>Video 3</span></div>`;
+    const imgs = c.creatives.length
+      ? c.creatives.slice(0,12).map(src => `<button class="creative" data-full="${esc(src)}" aria-label="Open creative"><img src="${esc(src)}" alt="${esc(c.title)} creative"></button>`).join("")
+      : Array.from({length:3}, (_, k) => `<div class="creative empty"><span>CREATIVE ${k+1}</span></div>`).join("");
+    return `<article class="show">
+      <header class="show-head">
+        <div><span class="label">${esc(co.name)}${c.date ? " · " + esc(c.date) : ""}</span><h5 dir="auto">${esc(c.title)}</h5><p>${esc(c.sub)}</p></div>
+        <div class="channels">${c.channels.map(x => `<span>${esc(x)}</span>`).join("")}</div>
+      </header>
+      <div class="show-grid">
+        <div class="show-media">
+          <div class="vids n${Math.min(c.videos.length,3) || 3}">${vids}</div>
+          <div class="label media-l">Creatives</div>
+          <div class="creatives six">${imgs}</div>
+        </div>
+        <aside class="show-box">
+          <span class="label">The campaign</span>
+          <p>${esc(c.about)}</p>
+          <span class="label">What I did</span>
+          <ul>${c.did.map(d => `<li>${esc(d)}</li>`).join("")}</ul>
+        </aside>
+      </div>
+    </article>`;
+  };
+
+  const growthHTML = g => `
+    <div class="growth">
+      <div class="growth-stats">${g.stats.map(([v, l]) => `<div><b>${esc(v)}</b><span>${esc(l)}</span></div>`).join("")}</div>
+      <ol class="steps">${g.steps.map(([t, d]) => `<li><strong>${esc(t)}</strong><p>${esc(d)}</p></li>`).join("")}</ol>
+    </div>`;
+
+  document.getElementById("companies").innerHTML = COMPANIES.map(co => `
+    <div class="company" id="${esc(co.id)}">
+      <div class="co-head">
+        <div class="co-id">
+          <div class="co-logo"><img src="${esc(co.logo)}" alt="${esc(co.name)}"></div>
+          <h3>${esc(co.name)}</h3>
+          <p>${esc(co.about)}</p>
+          <div class="meta"><span class="label">${esc(co.market)}</span><a href="${esc(co.site)}" target="_blank" rel="noopener">${esc(co.site.replace(/^https?:\/\//,""))} ↗</a></div>
+        </div>
+        <div class="stints">${co.stints.map(st => `
+          <div class="stint${st.now ? " now" : ""}">
+            <div class="stint-top"><span class="label">${esc(st.label)}</span>${st.tag ? `<span class="tag">${esc(st.tag)}</span>` : ""}</div>
+            ${st.roles.map(([t, d]) => `<div class="role-row"><strong>${esc(t)}</strong><span>${esc(d)}</span></div>`).join("")}
+          </div>`).join("")}
+        </div>
+      </div>
+      ${co.showcase ? `<div class="sub-head"><h4>Campaigns <span>I led</span></h4><span class="label">${co.showcase.length} campaigns</span></div>
+      <div class="shows">${co.showcase.map(c => showHTML(c, co)).join("")}</div>` : ""}
+      ${co.campaigns ? `<div class="sub-head"><h4>Mega <span>campaigns</span></h4><span class="label">${co.campaigns.length} campaigns</span></div>
+      <div class="camps">${co.campaigns.map(c => campHTML(c, co)).join("")}</div>` : ""}
+      ${co.growth ? `<div class="sub-head"><h4>Growth <span>story</span></h4><span class="label">${esc(co.growth.title)}</span></div>${growthHTML(co.growth)}` : ""}
+    </div>`).join("");
+
+  document.getElementById("companies").addEventListener("click", e => {
+    const v = e.target.closest(".video[data-yt]");
+    if (v && !v.querySelector("iframe")) {
+      v.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${v.dataset.yt}?autoplay=1&rel=0" title="Campaign video" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
+      return;
+    }
+    const cr = e.target.closest(".creative[data-full]");
+    if (cr) {
+      const lb = document.createElement("div");
+      lb.className = "lb"; lb.setAttribute("role","dialog"); lb.setAttribute("aria-label","Creative preview");
+      lb.innerHTML = `<img src="${cr.dataset.full}" alt=""><button aria-label="Close">×</button>`;
+      const close = () => { lb.remove(); document.removeEventListener("keydown", onKey); };
+      const onKey = ev => { if (ev.key === "Escape") close(); };
+      lb.addEventListener("click", ev => { if (ev.target === lb || ev.target.tagName === "BUTTON") close(); });
+      document.addEventListener("keydown", onKey);
+      document.body.appendChild(lb); lb.querySelector("button").focus();
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
