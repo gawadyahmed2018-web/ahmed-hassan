@@ -237,6 +237,12 @@ h1{font:800 clamp(52px,7.4vw,104px)/.95 var(--f-display);letter-spacing:-.035em;
 .c-row > .creative{margin:0;min-width:0;aspect-ratio:auto;width:auto;display:block}
 .c-row > .creative img{display:block;width:100%;height:auto}
 .show-box{padding:28px;display:flex;flex-direction:column;gap:12px;min-width:0;border-left:1px solid var(--line)}
+.show-box .camp-kpis{margin-bottom:6px}
+.show-box .camp-kpis b{font-size:22px}
+.show-box .camp-kpis div{padding:14px 10px 12px}
+.show-box .camp-kpis div:first-child{padding-left:0}
+.show-box .camp-kpis span{font-size:12px}
+.show-box .camp-note{margin-bottom:6px}
 .show-box p{margin:0 0 12px;font-size:15.5px;line-height:1.6}
 .show-box ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
 .show-box li{display:grid;grid-template-columns:16px 1fr;gap:8px;font-size:15px;line-height:1.45}
@@ -247,6 +253,9 @@ h1{font:800 clamp(52px,7.4vw,104px)/.95 var(--f-display);letter-spacing:-.035em;
 .growth-stats div{background:var(--ink);color:var(--paper);border-radius:8px;padding:24px 22px;display:flex;flex-direction:column;justify-content:space-between;gap:14px;min-width:0}
 .growth-stats b{font:800 clamp(36px,3.6vw,50px)/1 var(--f-display);letter-spacing:-.03em;color:#E9A877}
 .growth-stats span{font-size:14px;color:color-mix(in srgb,var(--paper) 75%,transparent)}
+.co-logo{display:flex;align-items:center;gap:12px}
+.co-logo span{font:700 20px/1 var(--f-display);color:#BE1E2D;letter-spacing:-.01em}
+#companies{display:flex;flex-direction:column;gap:96px}
 .steps{margin:0;padding:0;list-style:none;counter-reset:st;background:var(--surface);border:1px solid var(--line);border-radius:8px}
 .steps li{counter-increment:st;display:grid;grid-template-columns:44px 1fr;gap:4px 12px;padding:20px 22px;border-top:1px solid var(--line)}
 .steps li:first-child{border-top:0}
@@ -459,6 +468,56 @@ const COMPANIES = [
                ["Went app-first","Shifted acquisition toward the app, where customers bought more often."],
                ["Ran on data","Weekly and monthly dashboards gave leadership one view of every KPI."] ]
     }
+  },
+  {
+    id: "alsaif",
+    name: "Alsaif Gallery",
+    logo: "creatives/alsaif-logo.svg",
+    logoText: "Alsaif Gallery",
+    about: "One of Saudi Arabia's leading home and kitchen retailers, selling through physical stores and online.",
+    market: "Saudi Arabia",
+    site: "https://alsaifgallery.com",
+    stints: [
+      { label: "Apr 2024 – Jul 2025 · 1 yr 4 mos", tag: "", now: false,
+        roles: [ ["Digital Marketing Manager", "Apr 2024 – Jul 2025"] ] }
+    ],
+    showcase: [
+      { title: "Saudi National Day", sub: "National Day 94 · 23 September", date: "Sep 2024",
+        channels: ["Meta","Google Ads","Snapchat"],
+        kpis: [ ["SAR","9.1M","Revenue","+79% YoY"], ["","15x","ROAS",""], ["SAR","590K","Ad spend",""] ],
+        note: ["30x", "ROAS on National Day itself (23 Sep), on SAR 25K of spend. The highest return in the brand's paid advertising history."],
+        about: "A month-long National Day campaign across online and stores, peaking on 23 September.",
+        did: ["Built the campaign strategy and media mix",
+              "Ran Meta, Google and Snapchat in parallel",
+              "Shifted budget daily toward the best-returning channel",
+              "Aligned online offers with the store teams"],
+        videos: [], creatives: [] },
+      { title: "Saudi Founding Day", sub: "Founding Day · 22 February", date: "Feb 2025",
+        channels: ["Meta","Google Ads","Snapchat"],
+        kpis: [ ["SAR","13M","Revenue","+330% YoY"], ["","13x","ROAS",""], ["SAR","1M+","Ad spend",""] ],
+        note: null,
+        about: "The brand's biggest paid campaign, a full-funnel push for Saudi Founding Day.",
+        did: ["Planned a SAR 1M+ budget across three platforms",
+              "Built full-funnel audiences from awareness to purchase",
+              "Led the creative plan with the design team",
+              "Scaled spend while holding a 13x return"],
+        videos: [], creatives: [] },
+      { title: "هل هلاله", sub: "Ramadan campaign · Hal Hilalah", date: "Mar 2025",
+        channels: ["Meta","Google Ads","Snapchat"],
+        kpis: null, note: null,
+        about: "Alsaif Gallery's Ramadan campaign, covering the kitchen and home essentials families buy for the season.",
+        did: ["Built the Ramadan campaign plan and calendar",
+              "Ran always-on and peak-day bursts across channels",
+              "Directed seasonal creatives with the design team",
+              "Tracked results daily against sales targets"],
+        videos: [], creatives: [] }
+    ],
+    platformsNote: "National Day 2024 · Snapchat Ads",
+    platforms: [
+      { cat: "Snapchat", period: "Sep 2024", revenue: ["$","645K"], purchases: "5,687", roas: "9.58x", cpa: "$11.85" },
+      { cat: "Meta",     period: "", revenue: ["",""], purchases: "", roas: "", cpa: "" },
+      { cat: "Google Ads", period: "", revenue: ["",""], purchases: "", roas: "", cpa: "" }
+    ]
   }
 ];
 
@@ -490,6 +549,15 @@ const COMPANIES = [
     </article>`;
   };
 
+  const perfHTML = p => {
+    const tbd = !p.revenue[1];
+    return `<div class="perf${tbd ? " tbd" : ""}">
+      <div class="perf-top"><strong>${esc(p.cat)}</strong>${p.period ? `<span class="label">${esc(p.period)}</span>` : ""}</div>
+      <div><div class="big">${p.revenue[1] ? `<small>${esc(p.revenue[0])}</small>${esc(p.revenue[1])}` : "—"}</div><div class="big-l">Purchase value</div></div>
+      <dl><div><dt>Purchases</dt><dd>${dash(p.purchases)}</dd></div><div><dt>ROAS</dt><dd>${dash(p.roas)}</dd></div><div><dt>Cost / purchase</dt><dd>${dash(p.cpa)}</dd></div></dl>
+    </div>`;
+  };
+
   const showHTML = (c, co) => {
     const vids = c.videos.length
       ? c.videos.slice(0,3).map(id => `<button class="video" data-yt="${esc(id)}" aria-label="Play ${esc(c.title)} video"><img src="https://i.ytimg.com/vi/${esc(id)}/hqdefault.jpg" alt="" loading="lazy">${play}</button>`).join("")
@@ -509,6 +577,8 @@ const COMPANIES = [
           <div class="creatives six">${imgs}</div>
         </div>
         <aside class="show-box">
+          ${c.kpis ? `<div class="camp-kpis">${c.kpis.map(([cur, val, lab, delta]) => `<div><b>${cur ? `<small>${esc(cur)}</small>` : ""}${esc(val)}</b><span>${esc(lab)}${delta ? ` · <em>${esc(delta)}</em>` : ""}</span></div>`).join("")}</div>` : ""}
+          ${c.note ? `<div class="camp-note"><b>${esc(c.note[0])}</b><span>${esc(c.note[1])}</span></div>` : ""}
           <span class="label">The campaign</span>
           <p>${esc(c.about)}</p>
           <span class="label">What I did</span>
@@ -528,7 +598,7 @@ const COMPANIES = [
     <div class="company" id="${esc(co.id)}">
       <div class="co-head">
         <div class="co-id">
-          <div class="co-logo"><img src="${esc(co.logo)}" alt="${esc(co.name)}"></div>
+          <div class="co-logo"><img src="${esc(co.logo)}" alt="${esc(co.name)}">${co.logoText ? `<span>${esc(co.logoText)}</span>` : ""}</div>
           <h3>${esc(co.name)}</h3>
           <p>${esc(co.about)}</p>
           <div class="meta"><span class="label">${esc(co.market)}</span><a href="${esc(co.site)}" target="_blank" rel="noopener">${esc(co.site.replace(/^https?:\/\//,""))} ↗</a></div>
@@ -544,6 +614,7 @@ const COMPANIES = [
       <div class="shows">${co.showcase.map(c => showHTML(c, co)).join("")}</div>` : ""}
       ${co.campaigns ? `<div class="sub-head"><h4>Mega <span>campaigns</span></h4><span class="label">${co.campaigns.length} campaigns</span></div>
       <div class="camps">${co.campaigns.map(c => campHTML(c, co)).join("")}</div>` : ""}
+      ${co.platforms ? `<div class="sub-head"><h4>Performance <span>by platform</span></h4><span class="label">${esc(co.platformsNote)}</span></div><div class="perf-grid">${co.platforms.map(perfHTML).join("")}</div>` : ""}
       ${co.growth ? `<div class="sub-head"><h4>Growth <span>story</span></h4><span class="label">${esc(co.growth.title)}</span></div>${growthHTML(co.growth)}` : ""}
     </div>`).join("");
 
