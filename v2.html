@@ -271,6 +271,8 @@ h1{font:800 clamp(52px,7.4vw,104px)/.95 var(--f-display);letter-spacing:-.035em;
 .orb{display:flex;flex-direction:column;align-items:center;gap:10px;width:200px;text-decoration:none;text-align:center;flex:none}
 .orb-circle{width:180px;height:180px;border-radius:50%;background:#fff;border:1px solid var(--line);display:grid;place-items:center;padding:34px;box-shadow:0 18px 40px -24px rgba(15,26,42,.35);font:800 40px/1 var(--f-display);color:var(--ink);transition:transform .3s,border-color .3s,box-shadow .3s;overflow:hidden}
 .orb-circle img{max-width:100%;max-height:100%;object-fit:contain}
+.orb.fill .orb-circle{padding:0;background:var(--ink)}
+.orb.fill .orb-circle img{width:100%;height:100%;max-width:none;max-height:none;object-fit:cover}
 .orb:hover .orb-circle,.orb:focus-visible .orb-circle{transform:translateY(-6px) scale(1.04);border-color:var(--accent);box-shadow:0 26px 50px -22px rgba(181,101,43,.45)}
 .orb strong{font:700 20px/1.2 var(--f-title);letter-spacing:-.01em;margin-top:8px}
 .orb-sector{font:600 12px/1 var(--f-display);color:var(--accent-ink);background:var(--accent-soft);padding:7px 11px;border-radius:999px}
@@ -683,8 +685,8 @@ const COMPANIES = [
 <section class="section" id="freelance" aria-labelledby="free-h">
   <div class="wrap">
     <div class="sec-head">
-      <div><span class="label">Freelance &amp; projects</span><h2 id="free-h">Independent work across Saudi Arabia.</h2>
-      <p class="intro">Consulting and performance projects for brands in fintech, education, healthcare, SaaS and e-commerce.</p></div>
+      <div><span class="label">Freelance &amp; projects</span><h2 id="free-h">Independent work across Egypt and the GCC.</h2>
+      <p class="intro">Consulting and performance projects for brands in fintech, education, healthcare, SaaS, interior design and e-commerce.</p></div>
     </div>
     <div class="marquee" id="clients" aria-label="Freelance clients"></div>
   </div>
@@ -700,23 +702,25 @@ const CLIENTS = [
     text: "Digital marketing strategy and performance campaigns for a leading Saudi fintech platform." },
   { name: "Propath", initials: "P", logo: "https://propath.pro/uploads/system/20517922e9ccaa1c2c3d30d8e47e394a.png", sector: "E-Commerce · Education", market: "Saudi Arabia", site: "https://propath.pro",
     text: "Growth marketing for an e-commerce platform specializing in educational products and solutions." },
-  { name: "The Chapter", initials: "TC", logo: "https://thechapter.sa/logos/theChapter_logo_light.png", sector: "Medical", market: "Saudi Arabia", site: "https://thechapter.sa",
+  { name: "The Chapter", initials: "TC", logo: "https://thechapter.sa/logos/theChapter_logo_dark.png", sector: "Medical", market: "Saudi Arabia", site: "https://thechapter.sa",
     text: "Digital marketing and patient acquisition campaigns for a medical services brand in Saudi Arabia." },
   { name: "Gabster AI", initials: "G", logo: "https://gabster.ai/lovable-uploads/e5d8c10e-dfbf-463e-82c1-217fc1cc3fde.png", sector: "SaaS · AI", market: "Saudi Arabia", site: "https://gabster.ai",
     text: "Go-to-market strategy and user acquisition for an AI-powered SaaS product in the Saudi market." },
   { name: "Aromist", initials: "A", logo: "https://cdn.salla.sa/jZBDYa/MXy4w4mCCfLMf5aetBZE0m58kwqPSCUXdzCypWGb.png", sector: "E-Commerce", market: "Saudi Arabia", site: "https://aromist-sa.com",
-    text: "Full performance marketing setup and campaign management for a Saudi e-commerce brand." }
+    text: "Full performance marketing setup and campaign management for a Saudi e-commerce brand." },
+  { name: "MA Group", initials: "MA", logo: "creatives/ma-group.jpg", fill: true, sector: "Interior Design", market: "Egypt", site: "",
+    text: "Digital marketing for an interior design company in Egypt." }
 ];
 
 (function(){
   const esc = t => String(t ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
   const item = (c, hidden) => `
-    <a class="orb" href="${esc(c.site)}" target="_blank" rel="noopener" title="${esc(c.text)}"${hidden ? ' aria-hidden="true" tabindex="-1"' : ""}>
+    <${c.site ? "a" : "div"} class="orb${c.fill ? " fill" : ""}"${c.site ? ` href="${esc(c.site)}" target="_blank" rel="noopener"` : ""} title="${esc(c.text)}"${hidden ? ' aria-hidden="true" tabindex="-1"' : ""}>
       <span class="orb-circle">${c.logo ? `<img src="${esc(c.logo)}" alt="${esc(c.name)} logo" loading="lazy" onerror="this.replaceWith(document.createTextNode('${esc(c.initials)}'))">` : esc(c.initials)}</span>
       <strong>${esc(c.name)}</strong>
       <span class="orb-sector">${esc(c.sector)}</span>
       <span class="label">${esc(c.market)}</span>
-    </a>`;
+    </${c.site ? "a" : "div"}>`;
   const list = CLIENTS.map(c => item(c, false)).join("");
   const dup = CLIENTS.map(c => item(c, true)).join("");
   const root = document.getElementById("clients");
