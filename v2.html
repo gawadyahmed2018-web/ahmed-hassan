@@ -264,29 +264,21 @@ h1{font:800 clamp(52px,7.4vw,104px)/.95 var(--f-display);letter-spacing:-.035em;
 .steps p{margin:0;font-size:14.5px;color:var(--ink-2);line-height:1.5}
 
 /* FREELANCE */
-.clients{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
-.client{grid-column:span 2;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:26px;display:flex;flex-direction:column;gap:18px;min-width:0;transition:border-color .2s}
-.client:hover{border-color:var(--ink)}
-.client.featured{grid-column:span 3}
-.client-top{display:grid;grid-template-columns:auto 1fr;gap:10px 14px;align-items:center}
-.client-top .mono{width:96px;height:56px;padding:8px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--ink);overflow:hidden;display:grid;place-items:center;font:800 17px/1 var(--f-display);letter-spacing:-.02em}
-.client-top .mono img{max-width:100%;max-height:100%;object-fit:contain}
-.client-top h3{font:700 22px/1.1 var(--f-title);letter-spacing:-.015em;margin:0 0 6px}
-.client-top .sector{grid-column:2;justify-self:start;font:600 12px/1 var(--f-display);color:var(--accent-ink);background:var(--accent-soft);padding:8px 11px;border-radius:999px;white-space:nowrap}
-.client > p{margin:0;color:var(--ink-2);font-size:15px;line-height:1.55;flex:1}
-.client-res{background:var(--ink);color:var(--paper);border-radius:8px;padding:16px 18px;display:flex;flex-direction:column;gap:12px}
-.client-res .label{color:color-mix(in srgb,var(--paper) 60%,transparent)}
-.res-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.res-row div{min-width:0}
-.res-row b{display:block;font:800 clamp(20px,2vw,26px)/1 var(--f-display);letter-spacing:-.02em;color:#E9A877;font-variant-numeric:tabular-nums}
-.res-row span{display:block;margin-top:6px;font-size:12.5px;color:color-mix(in srgb,var(--paper) 75%,transparent)}
-.client-link{align-self:flex-start;font-weight:600;font-size:14px;text-decoration:none;border-bottom:1px solid var(--accent);padding-bottom:2px}
-.client-link:hover{color:var(--accent)}
+.marquee{position:relative;overflow:hidden;padding-block:12px 8px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.track{display:flex;gap:56px;width:max-content;animation:marquee calc(var(--n) * 6s) linear infinite}
+.marquee:hover .track,.marquee:focus-within .track{animation-play-state:paused}
+@keyframes marquee{to{transform:translateX(calc(-50% - 28px))}}
+.orb{display:flex;flex-direction:column;align-items:center;gap:10px;width:200px;text-decoration:none;text-align:center;flex:none}
+.orb-circle{width:180px;height:180px;border-radius:50%;background:#fff;border:1px solid var(--line);display:grid;place-items:center;padding:34px;box-shadow:0 18px 40px -24px rgba(15,26,42,.35);font:800 40px/1 var(--f-display);color:var(--ink);transition:transform .3s,border-color .3s,box-shadow .3s;overflow:hidden}
+.orb-circle img{max-width:100%;max-height:100%;object-fit:contain}
+.orb:hover .orb-circle,.orb:focus-visible .orb-circle{transform:translateY(-6px) scale(1.04);border-color:var(--accent);box-shadow:0 26px 50px -22px rgba(181,101,43,.45)}
+.orb strong{font:700 20px/1.2 var(--f-title);letter-spacing:-.01em;margin-top:8px}
+.orb-sector{font:600 12px/1 var(--f-display);color:var(--accent-ink);background:var(--accent-soft);padding:7px 11px;border-radius:999px}
+@media (prefers-reduced-motion:reduce){.track{animation:none}.marquee{overflow-x:auto}}
 
 @media (max-width:980px){
-  .clients{grid-template-columns:repeat(2,1fr)}
-  .client,.client.featured{grid-column:span 1}
-  .client.featured{grid-column:1/-1}
+  .orb-circle{width:150px;height:150px;padding:28px}
+  .orb{width:170px}
 
   .show-grid{grid-template-columns:1fr}
   .show-box{border-left:0;border-top:1px solid var(--line)}
@@ -309,8 +301,9 @@ h1{font:800 clamp(52px,7.4vw,104px)/.95 var(--f-display);letter-spacing:-.035em;
   .model:nth-child(n+3){border-top:1px solid var(--line)}
 }
 @media (max-width:480px){
-  .clients{grid-template-columns:1fr}
-  .client{padding:20px}
+  .orb-circle{width:128px;height:128px;padding:24px}
+  .orb{width:146px}
+  .track{gap:32px}
 
   .show-head{padding:22px 18px}
   .show-media{padding:14px}
@@ -693,51 +686,41 @@ const COMPANIES = [
       <div><span class="label">Freelance &amp; projects</span><h2 id="free-h">Independent work across Saudi Arabia.</h2>
       <p class="intro">Consulting and performance projects for brands in fintech, education, healthcare, SaaS and e-commerce.</p></div>
     </div>
-    <div class="clients" id="clients"></div>
+    <div class="marquee" id="clients" aria-label="Freelance clients"></div>
   </div>
 </section>
 
 <script>
 /* ============================================================
    FREELANCE DATA — edit clients, text and results here.
-   results: [value, label] pairs; leave [] to hide the results box
+   logo: image URL (falls back to initials). Add a client = add one line.
    ============================================================ */
 const CLIENTS = [
   { name: "Madfu", initials: "M", logo: "https://madfu.com.sa/assets/images/madfu-logo.svg", sector: "Fintech", market: "Saudi Arabia", site: "https://madfu.com.sa",
-    text: "Digital marketing strategy and performance campaigns for a leading Saudi fintech platform.",
-    resultsNote: "Google Ads · Nov 2025",
-    results: [ ["1,160","B2B leads"], ["$4.28","Cost per lead"], ["$0.11","Avg. CPC"] ] },
+    text: "Digital marketing strategy and performance campaigns for a leading Saudi fintech platform." },
   { name: "Propath", initials: "P", logo: "https://propath.pro/uploads/system/20517922e9ccaa1c2c3d30d8e47e394a.png", sector: "E-Commerce · Education", market: "Saudi Arabia", site: "https://propath.pro",
-    text: "Growth marketing for an e-commerce platform specializing in educational products and solutions.",
-    resultsNote: "LinkedIn + Google Ads · Sep 2025",
-    results: [ ["1,430","LinkedIn leads"], ["SAR 3.52","Cost per lead"], ["1,680","Google conversions"] ] },
+    text: "Growth marketing for an e-commerce platform specializing in educational products and solutions." },
   { name: "The Chapter", initials: "TC", logo: "https://thechapter.sa/logos/theChapter_logo_light.png", sector: "Medical", market: "Saudi Arabia", site: "https://thechapter.sa",
-    text: "Digital marketing and patient acquisition campaigns for a medical services brand in Saudi Arabia.",
-    resultsNote: "", results: [] },
+    text: "Digital marketing and patient acquisition campaigns for a medical services brand in Saudi Arabia." },
   { name: "Gabster AI", initials: "G", logo: "https://gabster.ai/lovable-uploads/e5d8c10e-dfbf-463e-82c1-217fc1cc3fde.png", sector: "SaaS · AI", market: "Saudi Arabia", site: "https://gabster.ai",
-    text: "Go-to-market strategy and user acquisition for an AI-powered SaaS product in the Saudi market.",
-    resultsNote: "", results: [] },
+    text: "Go-to-market strategy and user acquisition for an AI-powered SaaS product in the Saudi market." },
   { name: "Aromist", initials: "A", logo: "https://cdn.salla.sa/jZBDYa/MXy4w4mCCfLMf5aetBZE0m58kwqPSCUXdzCypWGb.png", sector: "E-Commerce", market: "Saudi Arabia", site: "https://aromist-sa.com",
-    text: "Full performance marketing setup and campaign management for a Saudi e-commerce brand.",
-    resultsNote: "", results: [] }
+    text: "Full performance marketing setup and campaign management for a Saudi e-commerce brand." }
 ];
 
 (function(){
   const esc = t => String(t ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-  document.getElementById("clients").innerHTML = CLIENTS.map(c => `
-    <article class="client${c.results.length ? " featured" : ""}">
-      <div class="client-top">
-        <span class="mono" aria-hidden="true">${c.logo ? `<img src="${esc(c.logo)}" alt="" onerror="this.replaceWith(document.createTextNode('${esc(c.initials)}'))">` : esc(c.initials)}</span>
-        <div><h3>${esc(c.name)}</h3><span class="label">${esc(c.market)}</span></div>
-        <span class="sector">${esc(c.sector)}</span>
-      </div>
-      <p>${esc(c.text)}</p>
-      ${c.results.length ? `<div class="client-res">
-        <span class="label">${esc(c.resultsNote)}</span>
-        <div class="res-row">${c.results.map(([v, l]) => `<div><b>${esc(v)}</b><span>${esc(l)}</span></div>`).join("")}</div>
-      </div>` : ""}
-      <a class="client-link" href="${esc(c.site)}" target="_blank" rel="noopener">${esc(c.site.replace(/^https?:\/\//, ""))} ↗</a>
-    </article>`).join("");
+  const item = (c, hidden) => `
+    <a class="orb" href="${esc(c.site)}" target="_blank" rel="noopener" title="${esc(c.text)}"${hidden ? ' aria-hidden="true" tabindex="-1"' : ""}>
+      <span class="orb-circle">${c.logo ? `<img src="${esc(c.logo)}" alt="${esc(c.name)} logo" loading="lazy" onerror="this.replaceWith(document.createTextNode('${esc(c.initials)}'))">` : esc(c.initials)}</span>
+      <strong>${esc(c.name)}</strong>
+      <span class="orb-sector">${esc(c.sector)}</span>
+      <span class="label">${esc(c.market)}</span>
+    </a>`;
+  const list = CLIENTS.map(c => item(c, false)).join("");
+  const dup = CLIENTS.map(c => item(c, true)).join("");
+  const root = document.getElementById("clients");
+  root.innerHTML = `<div class="track" style="--n:${CLIENTS.length}">${list}${dup}</div>`;
 })();
 </script>
 
