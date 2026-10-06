@@ -255,7 +255,19 @@ h1{font:800 clamp(52px,7.4vw,104px)/.95 var(--f-display);letter-spacing:-.035em;
 .growth-stats span{font-size:14px;color:color-mix(in srgb,var(--paper) 75%,transparent)}
 .co-logo{display:flex;align-items:center;gap:12px}
 .co-logo span{font:700 20px/1 var(--f-display);color:#BE1E2D;letter-spacing:-.01em}
-#companies{display:flex;flex-direction:column;gap:96px}
+#companies{display:flex;flex-direction:column;gap:40px}
+[hidden]{display:none!important}
+.co-switch{display:grid;grid-template-columns:1fr 1fr;gap:14px;position:sticky;top:69px;z-index:5;background:var(--paper);padding-block:12px}
+.co-switch button{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:16px;text-align:left;padding:16px 20px;border-radius:12px;border:2px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;font:inherit;transition:border-color .2s,background .2s,color .2s}
+.co-switch button:hover{border-color:var(--ink)}
+.co-switch button[aria-selected="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.sw-logo{width:64px;height:44px;border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;padding:6px;overflow:hidden}
+.sw-logo img{height:32px;width:auto;max-width:100%;object-fit:contain}
+.sw-txt{display:flex;flex-direction:column;gap:5px;min-width:0}
+.sw-txt strong{font:700 clamp(18px,1.8vw,22px)/1.1 var(--f-title);letter-spacing:-.01em}
+.sw-txt span{font:500 11px/1.3 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;opacity:.7}
+.sw-count{font:600 12px/1 var(--f-display);padding:7px 10px;border-radius:999px;background:var(--accent-soft);color:var(--accent-ink);white-space:nowrap}
+@media (max-width:640px){.co-switch{grid-template-columns:1fr 1fr;gap:8px}.co-switch button{grid-template-columns:1fr;gap:8px;padding:12px}.sw-count{display:none}.sw-logo{width:52px;height:36px}.sw-logo img{height:24px}}
 .steps{margin:0;padding:0;list-style:none;counter-reset:st;background:var(--surface);border:1px solid var(--line);border-radius:8px}
 .steps li{counter-increment:st;display:grid;grid-template-columns:44px 1fr;gap:4px 12px;padding:20px 22px;border-top:1px solid var(--line)}
 .steps li:first-child{border-top:0}
@@ -499,6 +511,7 @@ h1{font:800 clamp(52px,7.4vw,104px)/.95 var(--f-display);letter-spacing:-.035em;
 const COMPANIES = [
   {
     id: "raneen",
+    short: "2020–24 · 2026–now",
     name: "Raneen.com",
     logo: "https://www.raneen.com/media/logo/stores/2/logo-ar.png",
     about: "Egypt's #1 shopping app, a multi-category marketplace for home appliances, electronics, housewares and more.",
@@ -548,6 +561,7 @@ const COMPANIES = [
   },
   {
     id: "alsaif",
+    short: "2024–25",
     name: "Alsaif Gallery",
     logo: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA3OC44MiAxMTIuNzQiPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC02My44MiAtMzYxKSIgZmlsbD0iI0JFMUUyRCIgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBkPSJNMzYwLjExOSwzNjFjMy40NCwxLjI1Miw1LjEzNiw2LjgwOCwzLjI4NiwxMS4wMzcsMi42MDgsMS4zODIsMi44MjEsNi41MTMsMS4zNDEsOS4zODNhMTQuNzc2LDE0Ljc3NiwwLDAsMSw2Ljc1Niw1Ljk1NiwyMC45NCwyMC45NCwwLDAsMSwzLjI4NSw5LjQ5Yy4yNjYsNC4zNDEtMi4xNjMsNy4xODMtNS4wMTQsOC44ODctMy4wODMsMS44MzEtNi45NjYsMi4yODgtMTAuOTA2LDIuOTMyYTcwLjMzNSw3MC4zMzUsMCwwLDAtMTEuMiwyLjYzOGMtMy4zNDcsMS4xMzgtNy41MSwyLjk5Mi05LjM1Nyw1LjU3NWEyNS45MzcsMjUuOTM3LDAsMCwwLTMuMDg4LDYuMzQzLDI3LjY4OSwyNy42ODksMCwwLDAsMi41MDgsMjIuNjcyYy00LjU2MS0yLjkwOS02Ljc0OS04LjktNi44NDgtMTUuNjM4LS4xMDgtNy4wMjYsMS43MDktMTMuMDQ3LDUuNTA2LTE2LjlhMjQuMTI2LDI0LjEyNiwwLDAsMSw3LjQzMy00Ljc4M2MyLjg5NC0xLjI2OCw2LjEwOC0xLjc4LDkuNjM1LTIuNDQ2LDYuMzEtMS4xOCwxNS4yMDctMS42MTQsMTcuMjY4LTYuOTM3YTguNTI4LDguNTI4LDAsMCwwLC4zOTMtMi4xNDgsMTYuNzUxLDE2Ljc1MSwwLDAsMC0yLjk5My05LjE4OCwxMi40MDgsMTIuNDA4LDAsMCwwLTYuODUyLTUuMjc4YzIuMzU0LTIuNTQxLDEuNzA3LTguMzY1LS41ODItMTAuNDYxYTcuOTE5LDcuOTE5LDAsMCwwLDEuMTU5LTQuODgzYy0uMS0xLjAwNi0uNjY5LTMuMzI1LTEuNjQ3LTMuNDE5LTEuMDkxLS4xLTIuMDg5LDIuMjQxLTIuMjEzLDMuMzI2YTguNTA5LDguNTA5LDAsMCwwLDEuMDYyLDQuNzg4Yy0uNDY0LjY4NC0xLjA3OCwxLjA2NC0xLjUzNSwxLjg1NS0xLjQ4NywyLjU0OS0uNzgyLDYuNDcyLjI4Miw4Ljk5Mi03Ljk3NSwxLjE3NC0xMC41NDEsNy44MjItMTIuNTM5LDE1LjA1My4xMjctOC4zNDksMy4yMzktMTQuNSw5LjY0Mi0xNi44MTFhOS40NjQsOS40NjQsMCwwLDEsMS44MzMtOS4yODJjLTIuMDU4LTQuMjQ2LjI1NC05LjMyMiwzLjM4MS0xMC43NDgiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0yNjcuMTg3KSIvPjxwYXRoIGQ9Ik0zNjguNzI2LDc5My4wMTRjLjAyMS0uMTA4LjEwOC0uMDUzLjEwOCwwLDUuOSw1LjQyNiwzLjcyOCwxOC43NzYuOTU1LDI2LjA5NC0xLjQsMy42NTQtMy4zODcsNi40NzMtNC45MjMsOS43NzQtMS40ODksMy4yMjEtMi44MjUsOC4xODItMS4zNTUsMTEuOTIyLDIuNzI4LDYuODgzLDExLjc3Nyw5LjMyNCwyMS41MjMsOC44ODctNi44MTMtMi43MDgtMTEuMjM5LTcuODM0LTE0LjU3Ni0xNC4wNzYuMjczLS4xNzMuNjE2LjQ0Mi45NzUuNzg5LDMuNzc1LDMuNyw3Ljc4Myw3LjM5MiwxMy4yMTcsOS42NzVhMTQuNywxNC43LDAsMCwwLDYuODUyLDEuMzYyYzQuOTY4LS4zNjgsNy43NzUtMy41NDIsOC43NjMtNy45MTcsMS4xMTgtNC44NDctLjI5Mi0xMC4yLTEuNzIxLTE0LjE2Mi0xLjM2NS0zLjc0LTMuNDUyLTcuNDgyLTQuNjQxLTEyLjAyNC0xLjEzMi00LjMzMy0xLjcyOC0xMC4xOTQtLjA5NC0xNC40NTgsMi44OC03LjUzNywxMS40NjctMTIuMzQ0LDIxLjgtOS4xODYsOC40LDIuNTY4LDE0LjEzLDgsMTkuMTA4LDE0LjA3NmE0MC43NzYsNDAuNzc2LDAsMCwwLTEzLjctOC42MDljLTUuMzU2LTEuODkzLTEzLjk1Ny0zLjIyNy0xOC44MTEsMC00LjA1MiwyLjctNS44NDMsNi44NjMtNS43OSwxMi4xMTcuMSwxMC4zODQsNi45LDE3Ljg2Myw4LjQsMjcuMjcxLjkyMSw1LjgxMS0uNzY5LDEwLjIyOS00LjE1NiwxMy4wODdhMTMuNTMsMTMuNTMsMCwwLDEtNS42ODcsMi45NDEsMTkuODQyLDE5Ljg0MiwwLDAsMS05LjQ1My0uNzg0Yy02LjMyMSwyLjYxMi0xNS4zNSwxLjEzNS0xOS43NzUtMS45NTFhMTUuODc3LDE1Ljg3NywwLDAsMS02LjQ2OS0xMS4zNDFjLS4zNTYtNC43MiwxLjM0OC03LjksMy0xMC44NDhhNjEuMzExLDYxLjMxMSwwLDAsMCw3LjMyNi0yMC4zMjljLjYxOC0zLjk2Ny43NTYtOC45NjctLjg3Mi0xMi4zMSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTI5Mi4xOTYgLTM3Ny4zOTEpIi8+PHBhdGggZD0iTTQ2Ni40LDk3NS4yMjRjLTIuMzYyLTUuODgsMS41OTMtMTAuNDUzLDcuMjM1LTEwLjM2M2ExMC43NjgsMTAuNzY4LDAsMCwxLDEwLjUwOCw5LjY3NywxNS4wNDgsMTUuMDQ4LDAsMCwxLDAsMi42MjdjLS41NTQsNy44MTctNy4wNTYsMTEuMDgzLTE0LjY2MiwxMC41NjEtMy42LS4yNC02LjItMS40ODItOS4wODItMy4wMzJhMTguODY2LDE4Ljg2NiwwLDAsMCw4LjcsMS41NjVjNS4zOS0uNDE2LDkuNy0zLjcsMTAuMjI0LTguOTlhNi44OCw2Ljg4LDAsMCwwLTYuMjcyLTcuODFjLTQtLjQxOC01LjYzMiwyLjYzNC02LjY0Nyw1Ljc2NiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTM4MS40NjkgLTUzMi44MTgpIi8+PC9nPjwvc3ZnPgo=",
     logoText: "Alsaif Gallery",
@@ -671,8 +685,15 @@ const COMPANIES = [
       <ol class="steps">${g.steps.map(([t, d]) => `<li><strong>${esc(t)}</strong><p>${esc(d)}</p></li>`).join("")}</ol>
     </div>`;
 
-  document.getElementById("companies").innerHTML = COMPANIES.map(co => `
-    <div class="company" id="${esc(co.id)}">
+  const periodOf = co => co.stints.length > 1 ? co.stints.map(st => st.label.split(" · ")[0]).join("  ·  ") : co.stints[0].label.split(" · ")[0];
+  const switchHTML = `<div class="co-switch" role="tablist" aria-label="Choose company">${COMPANIES.map((co, i) => `
+    <button role="tab" id="tab-${esc(co.id)}" aria-controls="${esc(co.id)}" aria-selected="${i === 0}" data-co="${esc(co.id)}">
+      <span class="sw-logo"><img src="${esc(co.logo)}" alt=""></span>
+      <span class="sw-txt"><strong>${esc(co.name)}</strong><span>${esc(co.market)} · ${esc(co.short || periodOf(co))}</span></span>
+      <span class="sw-count">${(co.showcase || co.campaigns || []).length} campaigns</span>
+    </button>`).join("")}</div>`;
+  document.getElementById("companies").innerHTML = switchHTML + COMPANIES.map((co, i) => `
+    <div class="company" id="${esc(co.id)}" role="tabpanel" aria-labelledby="tab-${esc(co.id)}"${i ? " hidden" : ""}>
       <div class="co-head">
         <div class="co-id">
           <div class="co-logo"><img src="${esc(co.logo)}" alt="${esc(co.name)}">${co.logoText ? `<span>${esc(co.logoText)}</span>` : ""}</div>
@@ -715,6 +736,13 @@ const COMPANIES = [
     if (!imgs.length) return;
     Promise.all(imgs.map(im => im.complete ? Promise.resolve() : new Promise(r => { im.onload = im.onerror = r; }))).then(() => layoutGallery(g));
   });
+
+  document.querySelectorAll(".co-switch button").forEach(b => b.addEventListener("click", () => {
+    document.querySelectorAll(".co-switch button").forEach(x => x.setAttribute("aria-selected", x === b));
+    document.querySelectorAll("#companies .company").forEach(c => { c.hidden = c.id !== b.dataset.co; });
+    const top = document.querySelector(".co-switch").getBoundingClientRect().top + scrollY - 90;
+    if (scrollY > top) window.scrollTo({ top, behavior: "smooth" });
+  }));
 
   document.getElementById("companies").addEventListener("click", e => {
     const v = e.target.closest(".video[data-yt]");
