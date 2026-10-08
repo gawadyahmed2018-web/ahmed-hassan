@@ -332,7 +332,60 @@ h1{font:800 clamp(52px,7.4vw,104px)/.95 var(--f-display);letter-spacing:-.035em;
 .case-growth small{font-size:16px;opacity:.9}
 .results a:focus-visible,.results button:focus-visible{outline:2px solid #E9A877;outline-offset:3px}
 
+/* DATA HUB */
+.hub .sec-head{margin-bottom:44px}
+.hub-flow{display:grid;grid-template-columns:1fr 56px 1.05fr 56px 1fr;align-items:stretch;gap:0;margin-bottom:48px}
+.flow-col{display:flex;flex-direction:column;gap:12px;min-width:0}
+.flow-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.flow-list li{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:12px 14px;display:flex;flex-direction:column;gap:3px}
+.flow-list b{font:700 15px/1.2 var(--f-display)}
+.flow-list span{font-size:12.5px;color:var(--ink-2)}
+.flow-list.out li{border-left:3px solid var(--accent)}
+.flow-arrow{display:flex;align-items:center;justify-content:center}
+.flow-arrow span{position:relative;display:block;width:100%;height:2px;margin-inline:8px;background:repeating-linear-gradient(90deg,var(--accent) 0 8px,transparent 8px 14px);background-size:28px 2px;animation:flow 1.2s linear infinite}
+.flow-arrow span::after{content:"";position:absolute;right:-2px;top:-5px;border:6px solid transparent;border-left:8px solid var(--accent)}
+@keyframes flow{to{background-position:28px 0}}
+.flow-core{background:var(--ink);color:var(--paper);border-radius:14px;padding:28px 26px;display:flex;flex-direction:column;justify-content:center;gap:12px;box-shadow:0 30px 60px -30px rgba(15,26,42,.55);position:relative;overflow:hidden}
+.flow-core::before{content:"";position:absolute;inset:auto -40px -60px auto;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(233,168,119,.35),transparent 70%)}
+.flow-core .label{color:color-mix(in srgb,var(--paper) 60%,transparent)}
+.flow-core strong{font:700 clamp(28px,2.8vw,38px)/1.05 var(--f-title);letter-spacing:-.02em}
+.flow-core p{margin:0;font-size:14.5px;line-height:1.55;color:color-mix(in srgb,var(--paper) 78%,transparent)}
+.core-tags{display:flex;flex-wrap:wrap;gap:6px}
+.core-tags span{font:500 11px/1 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;padding:7px 9px;border-radius:4px;background:color-mix(in srgb,var(--paper) 10%,transparent)}
+.core-tags span:first-child{background:#1F7A4D;color:#fff}
+.hub-gallery{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:28px}
+.hub-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.hub-tabs button{font:600 14px/1 var(--f-body);color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:11px 16px;cursor:pointer;transition:background .2s,border-color .2s,color .2s}
+.hub-tabs button:hover{border-color:var(--ink)}
+.hub-tabs button[aria-selected="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.hub-view{display:grid;grid-template-columns:1fr 280px;gap:18px;align-items:start}
+.hub-main{border:1px solid var(--line);padding:0;background:#F1F3F8;border-radius:10px;overflow:hidden;cursor:zoom-in;display:block;width:100%}
+.hub-main img{display:block;width:100%;height:auto}
+.hub-side{display:flex;flex-direction:column;gap:10px;min-width:0}
+.hub-side strong{font:700 22px/1.15 var(--f-title)}
+.hub-side p{margin:0;font-size:15px;line-height:1.55;color:var(--ink-2)}
+.hub-thumbs{display:flex;flex-direction:column;gap:8px;margin-top:6px}
+.hub-thumbs button{display:grid;grid-template-columns:72px 1fr;gap:10px;align-items:center;text-align:left;padding:6px;border:1px solid var(--line);border-radius:8px;background:var(--paper);cursor:pointer;font:500 13px/1.3 var(--f-body);color:var(--ink)}
+.hub-thumbs button img{width:72px;height:44px;object-fit:cover;object-position:top left;border-radius:4px}
+.hub-thumbs button.on,.hub-thumbs button:hover{border-color:var(--accent)}
+.hub-note{margin:14px 0 0;font-size:13px;color:var(--ink-2);display:flex;gap:8px;align-items:center;background:var(--accent-soft);color:var(--accent-ink);padding:10px 14px;border-radius:8px}
+.hub-pis{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:24px}
+.hub-pis div{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:22px;display:flex;flex-direction:column;gap:10px}
+.hub-pis div:last-child{border-color:var(--accent);background:linear-gradient(180deg,var(--accent-soft),var(--surface) 70%)}
+.hub-pis p{margin:0;font-size:15px;line-height:1.6}
+.hub-stack{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.hub-stack .label{margin-right:6px}
+.hub-stack span:not(.label){font:600 13px/1 var(--f-display);padding:9px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface)}
+@media (prefers-reduced-motion:reduce){.flow-arrow span{animation:none}}
+
 @media (max-width:980px){
+  .hub-flow{grid-template-columns:1fr;gap:6px}
+  .flow-arrow{height:40px}
+  .flow-arrow span{width:2px;height:100%;margin:0;background:repeating-linear-gradient(180deg,var(--accent) 0 8px,transparent 8px 14px);background-size:2px 28px}
+  .flow-arrow span::after{right:-5px;top:auto;bottom:-4px;border:6px solid transparent;border-top:8px solid var(--accent)}
+  .hub-view{grid-template-columns:1fr}
+  .hub-pis{grid-template-columns:1fr}
+
   .res-head{grid-template-columns:1fr}
   .res-band{grid-template-columns:1fr 1fr}
   .res-band div:nth-child(3){border-left:0;padding-left:0}
@@ -364,6 +417,9 @@ h1{font:800 clamp(52px,7.4vw,104px)/.95 var(--f-display);letter-spacing:-.035em;
   .model:nth-child(n+3){border-top:1px solid var(--line)}
 }
 @media (max-width:480px){
+  .hub-gallery{padding:10px}
+  .hub-tabs button{padding:9px 12px;font-size:13px}
+
   .results{padding-block:72px}
   .case-info{padding:22px 18px}
   .case-shots{padding:12px}
@@ -931,6 +987,115 @@ const CASES = [
     const f = b.dataset.f;
     root.querySelectorAll(".case").forEach(c => { c.hidden = f !== "all" && !c.dataset.tags.split(" ").includes(f); });
   }));
+})();
+</script>
+
+<section class="section hub" id="data" aria-labelledby="hub-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="label">Data &amp; growth systems</span><h2 id="hub-h">One hub for every number that matters.</h2>
+      <p class="intro">A live executive hub I designed and built for a multi-category e-commerce marketplace in Egypt. It brings sales, targets, web and app analytics and every paid channel into one place, refreshed within minutes.</p></div>
+    </div>
+
+    <div class="hub-flow" aria-label="How the data hub works">
+      <div class="flow-col">
+        <span class="label">Sources</span>
+        <ul class="flow-list">
+          <li><b>Sales &amp; targets</b><span>Google Sheets</span></li>
+          <li><b>Web &amp; app analytics</b><span>GA4</span></li>
+          <li><b>Meta Ads</b><span>Facebook &amp; Instagram</span></li>
+          <li><b>Google Ads</b><span>Search · PMax · Demand Gen · App</span></li>
+          <li><b>Other channels</b><span>Coupons · Criteo · SMS</span></li>
+        </ul>
+      </div>
+      <div class="flow-arrow" aria-hidden="true"><span></span></div>
+      <div class="flow-core">
+        <span class="label">Central data hub</span>
+        <strong>Executive Hub</strong>
+        <p>Windsor.ai connectors and a Python pipeline feed one model of the business, refreshed every 5 minutes.</p>
+        <div class="core-tags"><span>Live</span><span>Target vs actual</span><span>AI summaries</span></div>
+      </div>
+      <div class="flow-arrow" aria-hidden="true"><span></span></div>
+      <div class="flow-col">
+        <span class="label">Decisions</span>
+        <ul class="flow-list out">
+          <li><b>Executive summary</b><span>Target, MER, marketing cost %, forecast</span></li>
+          <li><b>Customer journey</b><span>Funnel drop-off, traffic sources, categories</span></li>
+          <li><b>Paid media</b><span>Meta and Google command centers</span></li>
+          <li><b>Customer economics</b><span>CAC, LTV and LTV:CAC</span></li>
+          <li><b>Budget pacing</b><span>Burn rate and end-of-month projection</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="hub-gallery">
+      <div class="hub-tabs" role="tablist" aria-label="Dashboard modules" id="hubTabs"></div>
+      <div class="hub-view" id="hubView"></div>
+      <p class="hub-note"><span aria-hidden="true">ⓘ</span> Real project, in daily use. The figures in these screenshots have been altered and are shown for illustration only.</p>
+    </div>
+
+    <div class="hub-pis">
+      <div><span class="label">The problem</span><p>Sales sat in spreadsheets, traffic in GA4 and spend in four ad platforms. Every report took days to assemble, and nobody could see whether the month would hit target until it was over.</p></div>
+      <div><span class="label">What I built</span><p>A single hub that joins all sources daily and tracks every channel on the same revenue-based metrics: MER, ROAS, CAC and LTV. It flags what is off track and writes a plain-language summary for leadership.</p></div>
+      <div><span class="label">The impact</span><p>Leadership follows target, spend and efficiency from one link. Budget moves happen mid-month using pace-to-target and the forecast, instead of after the month closes.</p></div>
+    </div>
+
+    <div class="hub-stack"><span class="label">Built with</span><span>Python</span><span>Streamlit</span><span>Plotly</span><span>Windsor.ai</span><span>GA4</span><span>Meta Ads API</span><span>Google Ads API</span><span>Google Sheets</span></div>
+  </div>
+</section>
+
+<script>
+/* ============================================================
+   DATA HUB — dashboard modules and screenshots
+   ============================================================ */
+const HUB = [
+  { name:"Executive", text:"Sales against target, marketing cost %, MER, forecast and budget pacing on one screen.",
+    shots:[["dash/exec-1.jpg","Executive summary"],["dash/exec-2.jpg","Revenue, target and spend mix"],["dash/exec-3.jpg","Forecast and budget consumption"]] },
+  { name:"GA4", text:"The full customer journey across web and app, with the biggest drop-off point called out.",
+    shots:[["dash/ga4-1.jpg","GA4 command center"]] },
+  { name:"Meta Ads", text:"Spend, revenue, ROAS and CPA by campaign, with the top performer picked automatically.",
+    shots:[["dash/meta-1.jpg","Meta Ads overview"]] },
+  { name:"Google Ads", text:"Search, Performance Max, Demand Gen and App in one view, with spend pacing.",
+    shots:[["dash/gads-1.jpg","Google Ads command center"]] },
+  { name:"Customer economics", text:"What a new customer costs, what they are worth, and whether the ratio is healthy.",
+    shots:[["dash/cust-1.jpg","CAC, LTV and LTV:CAC"]] }
+];
+(function(){
+  const esc = t => String(t ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+  const tabs = document.getElementById("hubTabs"), view = document.getElementById("hubView");
+  tabs.innerHTML = HUB.map((m, i) => `<button role="tab" aria-selected="${i === 0}" data-i="${i}">${esc(m.name)}</button>`).join("");
+  const show = (i, k = 0) => {
+    const m = HUB[i];
+    view.innerHTML = `
+      <button class="hub-main" aria-label="Open screenshot full size"><img src="${m.shots[k][0]}" alt="${esc(m.shots[k][1])}"></button>
+      <div class="hub-side">
+        <strong>${esc(m.name)}</strong>
+        <p>${esc(m.text)}</p>
+        ${m.shots.length > 1 ? `<div class="hub-thumbs">${m.shots.map((s, j) => `<button class="${j === k ? "on" : ""}" data-k="${j}"><img src="${s[0]}" alt=""><span>${esc(s[1])}</span></button>`).join("")}</div>` : `<span class="label">${esc(m.shots[0][1])}</span>`}
+      </div>`;
+    view.dataset.i = i;
+  };
+  show(0);
+  tabs.addEventListener("click", e => {
+    const b = e.target.closest("button"); if (!b) return;
+    tabs.querySelectorAll("button").forEach(x => x.setAttribute("aria-selected", x === b));
+    show(+b.dataset.i);
+  });
+  view.addEventListener("click", e => {
+    const t = e.target.closest(".hub-thumbs button");
+    if (t) { show(+view.dataset.i, +t.dataset.k); return; }
+    const m = e.target.closest(".hub-main");
+    if (m) {
+      const lb = document.createElement("div");
+      lb.className = "lb"; lb.setAttribute("role","dialog"); lb.setAttribute("aria-label","Screenshot");
+      lb.innerHTML = `<img src="${m.querySelector("img").src}" alt=""><button aria-label="Close">×</button>`;
+      const close = () => { lb.remove(); document.removeEventListener("keydown", onKey); };
+      const onKey = ev => { if (ev.key === "Escape") close(); };
+      lb.addEventListener("click", ev => { if (ev.target === lb || ev.target.tagName === "BUTTON") close(); });
+      document.addEventListener("keydown", onKey);
+      document.body.appendChild(lb); lb.querySelector("button").focus();
+    }
+  });
 })();
 </script>
 
