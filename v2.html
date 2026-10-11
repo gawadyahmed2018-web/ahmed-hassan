@@ -332,6 +332,12 @@ h1{font:800 clamp(52px,7.4vw,104px)/.95 var(--f-display);letter-spacing:-.035em;
 .case-growth small{font-size:16px;opacity:.9}
 .results a:focus-visible,.results button:focus-visible{outline:2px solid #E9A877;outline-offset:3px}
 
+/* FOCUS */
+.focus-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px}
+.focus-grid div{background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--accent);border-radius:10px;padding:20px;display:flex;flex-direction:column;gap:8px}
+.focus-grid strong{font:700 17px/1.2 var(--f-title)}
+.focus-grid p{margin:0;font-size:14.5px;line-height:1.55;color:var(--ink-2)}
+
 /* DATA HUB */
 .hub .sec-head{margin-bottom:44px}
 .hub-flow{display:grid;grid-template-columns:1fr 56px 1.05fr 56px 1fr;align-items:stretch;gap:0;margin-bottom:48px}
@@ -402,6 +408,8 @@ h1{font:800 clamp(52px,7.4vw,104px)/.95 var(--f-display);letter-spacing:-.035em;
   .hub-view{grid-template-columns:1fr}
   .hub-pis{grid-template-columns:1fr}
 
+  .focus-grid{grid-template-columns:1fr 1fr}
+
   .res-head{grid-template-columns:1fr}
   .res-band{grid-template-columns:1fr 1fr}
   .res-band div:nth-child(3){border-left:0;padding-left:0}
@@ -435,6 +443,8 @@ h1{font:800 clamp(52px,7.4vw,104px)/.95 var(--f-display);letter-spacing:-.035em;
 @media (max-width:480px){
   .hub-gallery{padding:10px}
   .hub-tabs button{padding:9px 12px;font-size:13px}
+
+  .focus-grid{grid-template-columns:1fr}
 
   .results{padding-block:72px}
   .case-info{padding:22px 18px}
@@ -631,6 +641,40 @@ const COMPANIES = [
     }
   },
   {
+    id: "chapter",
+    short: "2025",
+    name: "The Chapter",
+    logo: "https://thechapter.sa/logos/theChapter_logo_dark.png",
+    about: "A medical services brand in Saudi Arabia, growing patient bookings through digital channels.",
+    market: "Saudi Arabia",
+    site: "https://thechapter.sa",
+    stints: [
+      { label: "Jun 2025 – Dec 2025 · 7 mos", tag: "Full-time · Remote", now: false,
+        roles: [ ["Performance Marketing Manager", "Jun 2025 – Dec 2025"] ] }
+    ],
+    focus: [ ["Paid media", "Led campaigns on Meta, Google, Snapchat and TikTok for a medical brand."],
+             ["Media planning", "Planned the media mix, audiences and the monthly budget across channels."],
+             ["Patient acquisition", "Drove leads and bookings through campaigns and landing pages."],
+             ["Tracking & reporting", "Set up GA4 and GTM tracking with weekly performance reports."] ]
+  },
+  {
+    id: "propath",
+    short: "2025",
+    name: "Propath",
+    logo: "https://www.google.com/s2/favicons?domain=propath.pro&sz=256",
+    about: "A Saudi professional training provider offering courses such as PMP, Data Camp and Power BI.",
+    market: "Saudi Arabia",
+    site: "https://propath.pro",
+    stints: [
+      { label: "Jun 2025 – Dec 2025 · 7 mos", tag: "Full-time · Remote", now: false,
+        roles: [ ["Performance Marketing Manager", "Jun 2025 – Dec 2025"] ] }
+    ],
+    focus: [ ["Lead generation", "Ran course enrolment campaigns on LinkedIn and Google Ads."],
+             ["Funnels", "Built B2B and B2C funnels from ad to landing page to enrolment."],
+             ["Lead quality", "Managed budgets, cost per lead and lead quality with the sales team."],
+             ["Optimization", "Weekly reporting and optimization based on results."] ]
+  },
+  {
     id: "alsaif",
     short: "2024–25",
     name: "Alsaif Gallery",
@@ -640,8 +684,8 @@ const COMPANIES = [
     market: "Saudi Arabia",
     site: "https://alsaifgallery.com",
     stints: [
-      { label: "Apr 2024 – Dec 2025 · 1 yr 9 mos", tag: "", now: false,
-        roles: [ ["Digital Marketing Manager", "Apr 2024 – Dec 2025"] ] }
+      { label: "Apr 2024 – May 2025 · 1 yr 2 mos", tag: "", now: false,
+        roles: [ ["Digital Marketing Manager", "Apr 2024 – May 2025"] ] }
     ],
     showcase: [
       { title: "Saudi National Day", sub: "National Day 94 · 23 September", date: "Sep 2024",
@@ -761,7 +805,7 @@ const COMPANIES = [
     <button role="tab" id="tab-${esc(co.id)}" aria-controls="${esc(co.id)}" aria-selected="${i === 0}" data-co="${esc(co.id)}">
       <span class="sw-logo"><img src="${esc(co.logo)}" alt=""></span>
       <span class="sw-txt"><strong>${esc(co.name)}</strong><span>${esc(co.market)} · ${esc(co.short || periodOf(co))}</span></span>
-      <span class="sw-count">${(co.showcase || co.campaigns || []).length} campaigns</span>
+      ${(co.showcase || co.campaigns || []).length ? `<span class="sw-count">${(co.showcase || co.campaigns).length} campaigns</span>` : `<span class="sw-count">Remote</span>`}
     </button>`).join("")}</div>`;
   document.getElementById("companies").innerHTML = switchHTML + COMPANIES.map((co, i) => `
     <div class="company" id="${esc(co.id)}" role="tabpanel" aria-labelledby="tab-${esc(co.id)}"${i ? " hidden" : ""}>
@@ -779,6 +823,7 @@ const COMPANIES = [
           </div>`).join("")}
         </div>
       </div>
+      ${co.focus ? `<div class="sub-head"><h4>What I <span>did</span></h4><span class="label">Role focus</span></div><div class="focus-grid">${co.focus.map(([t, d]) => `<div><strong>${esc(t)}</strong><p>${esc(d)}</p></div>`).join("")}</div>` : ""}
       ${co.showcase ? `<div class="sub-head"><h4>Campaigns <span>I led</span></h4><span class="label">${co.showcase.length} campaigns</span></div>
       <div class="shows">${co.showcase.map(c => showHTML(c, co)).join("")}</div>` : ""}
       ${co.campaigns ? `<div class="sub-head"><h4>Mega <span>campaigns</span></h4><span class="label">${co.campaigns.length} campaigns</span></div>
@@ -840,7 +885,7 @@ const COMPANIES = [
   <div class="wrap">
     <div class="sec-head">
       <div><span class="label">Freelance &amp; projects</span><h2 id="free-h">Independent work across Egypt and the GCC.</h2>
-      <p class="intro">Consulting and performance projects for brands in fintech, education, healthcare, SaaS, non-profits, home services, interior design, food and e-commerce.</p></div>
+      <p class="intro">Consulting and performance projects for brands in fintech, SaaS, non-profits, home services, interior design, food and e-commerce.</p></div>
     </div>
     <div class="marquee" id="clients" aria-label="Freelance clients"></div>
   </div>
@@ -854,10 +899,6 @@ const COMPANIES = [
 const CLIENTS = [
   { name: "Madfu", initials: "M", logo: "https://madfu.com.sa/assets/images/madfu-logo.svg", sector: "Fintech", market: "Saudi Arabia", site: "https://madfu.com.sa",
     text: "Digital marketing strategy and performance campaigns for a leading Saudi fintech platform." },
-  { name: "Propath", initials: "P", logo: "https://www.google.com/s2/favicons?domain=propath.pro&sz=256", sector: "E-Commerce · Education", market: "Saudi Arabia", site: "https://propath.pro",
-    text: "Growth marketing for an e-commerce platform specializing in educational products and solutions." },
-  { name: "The Chapter", initials: "TC", logo: "https://thechapter.sa/logos/theChapter_logo_dark.png", sector: "Medical", market: "Saudi Arabia", site: "https://thechapter.sa",
-    text: "Digital marketing and patient acquisition campaigns for a medical services brand in Saudi Arabia." },
   { name: "Gabster AI", initials: "G", logo: "https://gabster.ai/lovable-uploads/e5d8c10e-dfbf-463e-82c1-217fc1cc3fde.png", sector: "SaaS · AI", market: "Saudi Arabia", site: "https://gabster.ai",
     text: "Go-to-market strategy and user acquisition for an AI-powered SaaS product in the Saudi market." },
   { name: "Aromist", initials: "A", logo: "https://cdn.salla.sa/jZBDYa/MXy4w4mCCfLMf5aetBZE0m58kwqPSCUXdzCypWGb.png", sector: "E-Commerce", market: "Saudi Arabia", site: "https://aromist-sa.com",
